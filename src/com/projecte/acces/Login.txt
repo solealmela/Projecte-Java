@@ -1,5 +1,0 @@
-package com.projecte.acces;
-
-public class LectorLogin {
-    
-}
