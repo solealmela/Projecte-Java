@@ -1,6 +1,7 @@
 package com.projecte.usuaris;
 
+import com.projecte.entitat.Persona;
 
-public abstract class Usuari extends Persona {
+public class Usuari extends Persona {
 
 }
