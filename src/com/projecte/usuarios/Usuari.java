@@ -1,5 +1,8 @@
 package com.projecte.usuarios;
 
+import java.io.FileReader;
+import java.io.IOException;
+
 import com.projecte.entidad.*;
 public class Usuari extends Persona {
     String rol;
@@ -17,7 +20,6 @@ public class Usuari extends Persona {
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;
     }
-
     public int getId() {
         return id;
     }

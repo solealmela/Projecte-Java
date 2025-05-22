@@ -1,5 +1,11 @@
 package com.projecte.acceso;
 
+public class Registro {
+    
+}
+
+package com.projecte.acceso;
+
 import java.io.FileReader;
 import java.util.Scanner;
 
