@@ -46,7 +46,11 @@ public class Usuari extends Persona {
     }
     public void setContrasena(String contrasena) {
         this.contrasena = contrasena;
+    
+    @Override
+    public String toString() {
+        return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario
+                + "]";
     }
-
 
 }
