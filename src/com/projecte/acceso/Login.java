@@ -23,7 +23,7 @@ public class Login {
                 System.out.println(linea);
                 String[] datos = linea.split(":"); //Lo separa por los dos puntos
 
-                if (datos[0] == usuario && datos[3] == contrasenya){ //Si esta parte corresponde con los datos introducidos
+                if (datos[1] == usuario && datos[4] == contrasenya){ //Si esta parte corresponde con los datos introducidos
                     System.out.println("Bienvenido" + usuario);
                 }
             }
