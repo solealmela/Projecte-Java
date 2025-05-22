@@ -1,4 +1,4 @@
-package com.projecte.acces;
+package com.projecte.acceso;
 
 public class Login {
 

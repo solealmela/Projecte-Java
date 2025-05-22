@@ -1,6 +1,6 @@
-package com.projecte.usuaris;
+package com.projecte.usuarios;
 
-import com.projecte.entitat.*;
+import com.projecte.entidad.*;
 public class Usuari extends Persona {
     String rol;
     int id;
@@ -12,7 +12,7 @@ public class Usuari extends Persona {
             String nombreUsuario, String contrasena) {
         super(nombre, apellido, fechaNacimiento);
         this.id = id;
-        rol = "ROL.USUARI";
+        rol = "ROL.USUARIO";
         this.poblacion = poblacion;
         this.nombreUsuario = nombreUsuario;
         this.contrasena = contrasena;

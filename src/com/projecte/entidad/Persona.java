@@ -1,4 +1,4 @@
-package com.projecte.entitat;
+package com.projecte.entidad;
 public abstract class Persona {
     private String nombre;
     private String apellido;
