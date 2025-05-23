@@ -47,5 +47,6 @@ public class ProgramaPrincipal {
     }
 
     public static void menuInicioUsuario(){
+        String[] opciones = {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas",};
     }
 }
