@@ -14,6 +14,7 @@ public class ProgramaPrincipal {
         switch (opcion) {
             case 1:
                 registreUsuari();
+                mostrarMenu();
               
             break;
             case 2:
@@ -42,5 +43,8 @@ public class ProgramaPrincipal {
         String[] opciones = {"REGISTRE","LOGIN","SALIR"};
         Menu menuInicio = new Menu("Menu de inicio", opciones);
         menuInicio.mostrarMenu();
+    }
+
+    public static void menuInicioUsuario(){
     }
 }
