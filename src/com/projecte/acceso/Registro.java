@@ -27,58 +27,62 @@ public class Registro {
             System.out.println("Error al obtener la id: " + e.getMessage());
         }
 
-        System.out.println("Introduce tu nombre de usuario");
+        System.out.print("\nIntroduce tu nombre de usuario: ");
         String nombreUsuario = sc.nextLine();
 
         //Comprobamos que ese nombre de usuario no está en uso
         if (!existeDato(nombreUsuario, 1)) {
-            System.out.println("Introduce tus apellidos");
+            System.out.print("Introduce tus apellidos: ");
             String apellidos = sc.nextLine();
             
-            System.out.println("Introduce tu email");
+            System.out.print("Introduce tu email: ");
             String email = sc.nextLine();
 
             //Comprobamos que el email contenga '@' y no esté en uso
-            if (validarEmail(email) && !existeDato(email,3)) {
-                System.out.println("Introduce tu contraseña");
-                String contrasenya = sc.nextLine();
-                System.out.println("Repite la contraseña");
-                String verificarContrasenya = sc.nextLine();
+            if (validarEmail(email)) {
+                if (!existeDato(email,3)) {
+                    System.out.print("Introduce tu contraseña: ");
+                    String contrasenya = sc.nextLine();
+                    System.out.print("Repite la contraseña: ");
+                    String verificarContrasenya = sc.nextLine();
 
-                //Comprobamos si las contraseñas coinciden
-                if (contrasenya.equals(verificarContrasenya)) {
-                    System.out.println("Introduce tu población");
-                    String poblacion = sc.nextLine();
-                    
-                    System.out.println("Introduce tu fecha de nacimiento (dd-MM-YYYY)");
-                    String fechaNacimiento = sc.nextLine();
+                    //Comprobamos si las contraseñas coinciden
+                    if (contrasenya.equals(verificarContrasenya)) {
+                        System.out.print("Introduce tu población: ");
+                        String poblacion = sc.nextLine();
+                        
+                        System.out.print("Introduce tu fecha de nacimiento (dd-MM-YYYY): ");
+                        String fechaNacimiento = sc.nextLine();
 
-                    //Validamos que el formato de la fecha sea correcto
-                    if (validarFecha(fechaNacimiento)) {
+                        //Validamos que el formato de la fecha sea correcto
+                        if (validarFecha(fechaNacimiento)) {
 
-                        //Si todos los datos son correctos, los escribimos en el archivo 'archivoUsuarios.txt'
-                        try (BufferedWriter out = new BufferedWriter(new FileWriter(ARCHIVO, true))) {
-                            String datos = id + ":" + nombreUsuario + ":" + apellidos + ":" + email + ":" + contrasenya + ":" + poblacion + ":" + fechaNacimiento;
-                            out.write(datos);
-                            out.newLine();
+                            //Si todos los datos son correctos, los escribimos en el archivo 'archivoUsuarios.txt'
+                            try (BufferedWriter out = new BufferedWriter(new FileWriter(ARCHIVO, true))) {
+                                String datos = id + ":" + nombreUsuario + ":" + apellidos + ":" + email + ":" + contrasenya + ":" + poblacion + ":" + fechaNacimiento;
+                                out.write(datos);
+                                out.newLine();
 
-                            System.out.println("Usuario creado correctamente");
-                        } catch (IOException e) {
-                                System.out.println("Error al crear el usuario: " + e.getMessage());
+                                System.out.println("\nUsuario creado correctamente\n"); 
+                            } catch (IOException e) {
+                                    System.out.println("Error al crear el usuario: " + e.getMessage());
+                            }
+
+                        } else {
+                            System.out.println("\nFormato de fecha incorrecto\n");
                         }
 
                     } else {
-                        System.out.println("Formato de fecha incorrecto");
+                        System.out.println("\nLas contraseñas no coinciden\n");
                     }
-
                 } else {
-                    System.out.println("Las contraseñas no coinciden");
-                }
+                    System.out.println("\nEse email ya está en uso\n");
+                }                
             } else {
-                System.out.println("Ese email no es válido");
+                System.out.println("\nFormato incorrecto de email\n");
             }
         } else {
-            System.out.println("Nombre de usuario no disponible");
+            System.out.println("\nNombre de usuario no disponible\n");
         }
     }
 

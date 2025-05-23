@@ -1,7 +1,6 @@
 package com.projecte.main;
 import java.util.Scanner;
 
-
 import com.projecte.acceso.Registro;
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
@@ -19,8 +18,6 @@ public class ProgramaPrincipal {
             break;
             case 2:
                 loginUsuario();
-                Login login1 = new Login();
-                login1.loginUsuario();
             break;
             case 3:
                 
@@ -28,9 +25,9 @@ public class ProgramaPrincipal {
         }
         
     } //fin main
-
     public static void loginUsuario(){
-        System.out.println("Dime el nombre del usuario y su contraseña");
+        Login login = new Login();
+        login.loginUsuario();
     }
 
     public static void registreUsuari(){
@@ -39,7 +36,7 @@ public class ProgramaPrincipal {
     }
 
     public static void mostrarMenu(){
-        String[] opciones = {"REGISTRE","LOGIN","SALIR"};
+        String[] opciones = {"Registro","Inicio de sesión","Salir"};
         Menu menuInicio = new Menu("Menu de inicio", opciones);
         menuInicio.mostrarMenu();
     }
