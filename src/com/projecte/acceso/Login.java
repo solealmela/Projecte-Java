@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class Login {
 
     public void login(){
+    public void loginUsuario(){
         Scanner sc = new Scanner(System.in);
         
         try {
