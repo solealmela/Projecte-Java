@@ -32,5 +32,9 @@ public class Menu {
     }
     System.out.print("Selecciona una opción: ");
     }
+
+    public void listarDirectores(){
+        
+    }
     
 }

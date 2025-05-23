@@ -1,7 +1,10 @@
 package com.projecte.main;
 import java.util.Scanner;
 
+
 import com.projecte.acceso.Registro;
+import com.projecte.menus.*;
+import com.projecte.acceso.*;
 
 public class ProgramaPrincipal {
     static Scanner sc = new Scanner(System.in);
@@ -13,38 +16,31 @@ public class ProgramaPrincipal {
         switch (opcion) {
             case 1:
                 registreUsuari();
-                Registro registro = new Registro();
-                registro.obtenerDatos();
             break;
             case 2:
-                loginUsuari();
-                
+                loginUsuario();
+                Login login1 = new Login();
+                login1.loginUsuario();
             break;
             case 3:
                 
             break;
-        
         }
         
     } //fin main
 
-    public static void loginUsuari(){
+    public static void loginUsuario(){
         System.out.println("Dime el nombre del usuario y su contraseña");
     }
 
     public static void registreUsuari(){
-        System.out.println("Nombre:");
-        System.out.println("Apellido:");
-        System.out.println("Fecha de nacimiento:");
-        System.out.println("Email:");
-        System.out.println("Contraseña:");
+        Registro registro1 = new Registro();
+        registro1.obtenerDatos();
     }
 
     public static void mostrarMenu(){
-        System.out.println("""
-                1.REGISTRE
-                2.LOGIN
-                3.SALIR
-                """);
+        String[] opciones = {"REGISTRE","LOGIN","SALIR"};
+        Menu menuInicio = new Menu("Menu de inicio", opciones);
+        menuInicio.mostrarMenu();
     }
 }
