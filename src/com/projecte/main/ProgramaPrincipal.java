@@ -14,11 +14,6 @@ public class ProgramaPrincipal {
         switch (opcion) {
             case 1:
                 registreUsuari();
-<<<<<<< HEAD
-=======
-                mostrarMenu();
-              
->>>>>>> 07bb6983df4dfc110b62a8f2fc1b64c030b0dcb8
             break;
             case 2:
                 loginUsuario();
@@ -47,6 +42,6 @@ public class ProgramaPrincipal {
     }
 
     public static void menuInicioUsuario(){
-        String[] opciones = {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas",};
+        String[] opciones = {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores"};
     }
 }
