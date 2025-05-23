@@ -27,7 +27,7 @@ public class ProgramaPrincipal {
     } //fin main
     public static void loginUsuario(){
         Login login = new Login();
-        login.loginUsuario();
+        login.login();
     }
 
     public static void registreUsuari(){
