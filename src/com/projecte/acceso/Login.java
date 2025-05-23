@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Login {
 
-    public void login(String archivo){
+    public void loginUsuario(){
         Scanner sc = new Scanner(System.in);
         
         try {
@@ -16,7 +16,7 @@ public class Login {
             System.out.println("Introduce la contraseña");
             String contrasenya = sc.nextLine();
 
-            BufferedReader lector =  new BufferedReader(new FileReader(archivo));
+            BufferedReader lector =  new BufferedReader(new FileReader("antuan.txt"));
             String linea;
 
             while ((linea = lector.readLine()) != null) {
