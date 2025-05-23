@@ -56,4 +56,5 @@ public class Usuario extends Persona {
         return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario
                 + "]";
     }
+
 }
