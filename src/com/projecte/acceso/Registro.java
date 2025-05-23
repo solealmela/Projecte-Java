@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Registro {
     
     private Scanner sc = new Scanner(System.in);
-    private static final String ARCHIVO = "archivoUsuarios.txt";
+    private static final String ARCHIVO = "src/com/projecte/usuarios/archivoUsuarios.txt";
 
     public void obtenerDatos() {
         //Creamos el ID de cada usuario a partir de las líneas que haya en el archivo

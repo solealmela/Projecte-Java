@@ -14,7 +14,6 @@ public class ProgramaPrincipal {
         switch (opcion) {
             case 1:
                 registreUsuari();
-              
             break;
             case 2:
                 loginUsuario();
@@ -24,7 +23,6 @@ public class ProgramaPrincipal {
             case 3:
                 
             break;
-        
         }
         
     } //fin main
