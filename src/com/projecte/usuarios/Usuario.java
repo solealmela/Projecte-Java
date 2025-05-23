@@ -50,14 +50,25 @@ public class Usuario extends Persona {
     public String getContrasenya() {
         return contrasenya;
     }
+<<<<<<< HEAD
   
     public void setContrasenya(String contrasenya) {
         this.contrasenya = contrasenya;
     }
   
+=======
+
+    public void setContrasenya(String contrasenya) {
+        this.contrasenya = contrasenya;
+    }
+>>>>>>> 07bb6983df4dfc110b62a8f2fc1b64c030b0dcb8
     @Override
     public String toString() {
         return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario
                 + "]";
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 07bb6983df4dfc110b62a8f2fc1b64c030b0dcb8
 }
