@@ -1,6 +1,8 @@
 package com.projecte.main;
 import java.util.Scanner;
 
+
+import com.projecte.acceso.Registro;
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
 
@@ -14,7 +16,6 @@ public class ProgramaPrincipal {
         switch (opcion) {
             case 1:
                 registreUsuari();
-              
             break;
             case 2:
                 loginUsuario();
@@ -24,7 +25,6 @@ public class ProgramaPrincipal {
             case 3:
                 
             break;
-        
         }
         
     } //fin main
