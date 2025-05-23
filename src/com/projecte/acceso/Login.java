@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class Login {
 
     public void login(){
-    public void loginUsuario(){
         Scanner sc = new Scanner(System.in);
         
         try {
@@ -17,7 +16,7 @@ public class Login {
             System.out.println("Introduce la contraseña:");
             String contrasenya = sc.nextLine();
 
-            BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/accesso/antuan.txt"));
+            BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/accesso/archivoUsuarios.txt"));
             String linea;
             boolean accesoConcedido = false;
 

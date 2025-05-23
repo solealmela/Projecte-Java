@@ -17,8 +17,6 @@ public class ProgramaPrincipal {
             break;
             case 2:
                 loginUsuario();
-                Login login1 = new Login();
-                login1.loginUsuario();
             break;
             case 3:
                 
@@ -28,8 +26,8 @@ public class ProgramaPrincipal {
     } //fin main
 
     public static void loginUsuario(){
-        Login login= new Login();
-        login.login();
+        Login login1 = new Login();
+        login1.login();
     }
 
     public static void registreUsuari(){
