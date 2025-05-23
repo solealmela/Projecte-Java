@@ -5,8 +5,8 @@ public class Menu {
    private String [] opciones;
 
     public Menu(String titulo, String[] opciones) {
-    this.titulo = titulo;
-    this.opciones = opciones;
+        this.titulo = titulo;
+        this.opciones = opciones;
     }
 
     public String getTitulo() {
@@ -19,8 +19,10 @@ public class Menu {
     public String[] getOpciones() {
         return opciones;
     }
+
     public void setOpciones(String[] opciones) {
         this.opciones = opciones;
+
     }
 
     public void mostrarMenu(){
@@ -30,6 +32,5 @@ public class Menu {
     }
     System.out.print("Selecciona una opción: ");
     }
-
     
 }

@@ -1,52 +1,61 @@
 package com.projecte.usuarios;
 
-import java.io.FileReader;
-import java.io.IOException;
-
 import com.projecte.entidad.*;
-public class Usuari extends Persona {
-    String rol;
+
+public class Usuario extends Persona {
+    
     int id;
+    String rol;
     String poblacion;
     String nombreUsuario; //Lo introducimos cada vez que se accede
-    String contrasena;
+    String contrasenya;
 
-    public Usuari(String nombre, String apellido, String fechaNacimiento, int id, String poblacion,
-            String nombreUsuario, String contrasena) {
+    public Usuario(String nombre, String apellido, String fechaNacimiento, int id, String poblacion, String nombreUsuario, String contrasenya) {
         super(nombre, apellido, fechaNacimiento);
         this.id = id;
         rol = "ROL.USUARIO";
         this.poblacion = poblacion;
         this.nombreUsuario = nombreUsuario;
-        this.contrasena = contrasena;
+        this.contrasenya = contrasenya;
     }
+
     public int getId() {
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }
+
     public String isRol() {
         return rol;
     }
+
     public String getPoblacion() {
         return poblacion;
     }
+
     public void setPoblacion(String poblacion) {
         this.poblacion = poblacion;
     }
+
     public String getNombreUsuario() {
         return nombreUsuario;
     }
+
     public void setNombreUsuario(String nombreUsuario) {
         this.nombreUsuario = nombreUsuario;
     }
-    public String getContrasena() {
-        return contrasena;
+
+    public String getContrasenya() {
+        return contrasenya;
     }
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+<<<<<<< HEAD:src/com/projecte/usuarios/Usuario.java
+
+    public void setContrasenya(String contrasenya) {
+        this.contrasenya = contrasenya;
     }
+=======
     
     @Override
     public String toString() {
@@ -54,4 +63,5 @@ public class Usuari extends Persona {
                 + "]";
     }
 
+>>>>>>> ede064c2e00ad0e3e9a90cec3a3f60e04144a50c:src/com/projecte/usuarios/Usuari.java
 }
