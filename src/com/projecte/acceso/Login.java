@@ -9,12 +9,18 @@ public class Login {
 
     public void login(){
         Scanner sc = new Scanner(System.in);
+        String contrasenya="";
+        String contrasenyaconfirmar="";
         
         try {
             System.out.println("Introduce el nombre de usuario:");
             String usuario = sc.nextLine();
+            do {
             System.out.println("Introduce la contraseña:");
-            String contrasenya = sc.nextLine();
+            contrasenya = sc.nextLine();
+            System.out.println("Confirma la contraseña:");
+            contrasenyaconfirmar = sc.nextLine();
+            } while (contrasenya==contrasenyaconfirmar);
 
             BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/accesso/archivoUsuarios.txt"));
             String linea;
