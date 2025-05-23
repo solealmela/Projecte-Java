@@ -1,6 +1,8 @@
 package com.projecte.main;
 import java.util.Scanner;
 
+import com.projecte.acceso.Registro;
+
 public class ProgramaPrincipal {
     static Scanner sc = new Scanner(System.in);
     static int opcion;
@@ -11,6 +13,8 @@ public class ProgramaPrincipal {
         switch (opcion) {
             case 1:
                 registreUsuari();
+                Registro registro = new Registro();
+                registro.obtenerDatos();
             break;
             case 2:
                 loginUsuari();
