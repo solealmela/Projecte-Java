@@ -17,8 +17,6 @@ public class Login {
             String usuario = sc.nextLine();
             System.out.println("Introduce la contraseña:");
             contrasenya = sc.nextLine();
-            System.out.println("Confirma la contraseña:");
-            contrasenyaconfirmar = sc.nextLine();
             
             BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/usuarios/archivoUsuarios.txt"));
             String linea;
@@ -29,7 +27,7 @@ public class Login {
 
                 if (datos.length >= 5) {
                     if (datos[1].equals(usuario) && datos[4].equals(contrasenya)) {
-                        System.out.println("Bienvenido, " + usuario);
+                        System.out.println("Bienvenido/a, " + usuario);
                         accesoConcedido = true;
                         break;
                     }
