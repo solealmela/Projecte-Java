@@ -22,7 +22,7 @@ public class Login {
             contrasenyaconfirmar = sc.nextLine();
             } while (contrasenya==contrasenyaconfirmar);
 
-            BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/accesso/archivoUsuarios.txt"));
+            BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/usuarios/archivoUsuarios.txt"));
             String linea;
             boolean accesoConcedido = false;
 
