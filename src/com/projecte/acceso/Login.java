@@ -7,29 +7,40 @@ import java.util.Scanner;
 
 public class Login {
 
-    public void login(String archivo){
+    public void login(){
         Scanner sc = new Scanner(System.in);
         
         try {
-            System.out.println("Introduce el nombre de usuario");
+            System.out.println("Introduce el nombre de usuario:");
             String usuario = sc.nextLine();
-            System.out.println("Introduce la contraseña");
+            System.out.println("Introduce la contraseña:");
             String contrasenya = sc.nextLine();
 
-            BufferedReader lector =  new BufferedReader(new FileReader(archivo));
+            BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/accesso/antuan.txt"));
             String linea;
+            boolean accesoConcedido = false;
 
             while ((linea = lector.readLine()) != null) {
-                System.out.println(linea);
-                String[] datos = linea.split(":"); //Lo separa por los dos puntos
+                String[] datos = linea.split(":");
 
-                if (datos[1] == usuario && datos[4] == contrasenya){ //Si esta parte corresponde con los datos introducidos
-                    System.out.println("Bienvenido" + usuario);
+                if (datos.length >= 5) {
+                    if (datos[1].equals(usuario) && datos[4].equals(contrasenya)) {
+                        System.out.println("Bienvenido, " + usuario);
+                        accesoConcedido = true;
+                        break;
+                    }
                 }
             }
+
+            if (!accesoConcedido) {
+                System.out.println("Usuario o contraseña incorrectos.");
+            }
+
             lector.close();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
+        } finally {
+            sc.close(); // Se cierra el Scanner
         }
 
     }

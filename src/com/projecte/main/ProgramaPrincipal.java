@@ -1,6 +1,8 @@
 package com.projecte.main;
 import java.util.Scanner;
 
+import com.projecte.acceso.Login;
+
 public class ProgramaPrincipal {
     static Scanner sc = new Scanner(System.in);
     static int opcion;
@@ -25,7 +27,8 @@ public class ProgramaPrincipal {
     } //fin main
 
     public static void loginUsuari(){
-        System.out.println("Dime el nombre del usuario y su contraseña");
+        Login login= new Login();
+        login.login();
     }
 
     public static void registreUsuari(){
