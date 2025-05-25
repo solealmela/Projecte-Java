@@ -1,9 +1,9 @@
 package com.projecte.entidad;
 
-import java.util.ArrayList;
-
 public class Actor extends Persona {
-    static private String ARCHIVO = "Actor.llista";
+    
+    static private int id;
+    static private String archivo = "src/com/projecte/usuarios/"+id+"/archivoActores.llista";
 
 
     public Actor(String nombre, String apellido, String fechaNacimiento) {
