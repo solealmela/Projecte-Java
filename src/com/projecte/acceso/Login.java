@@ -41,7 +41,6 @@ public class Login {
         } catch(Exception e){
             e.printStackTrace();
         }finally {
-            // sc.close(); // Se cierra el Scanner si eres imbecil
         }
 
     }
