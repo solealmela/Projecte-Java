@@ -37,4 +37,8 @@ public class ProgramaPrincipal {
         Menu menuInicio = new Menu("Menu de inicio", opciones);
         menuInicio.mostrarMenu();
     }
+
+    public static void menuInicioUsuario(){
+        String[] opciones = {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores"};
+    }
 }

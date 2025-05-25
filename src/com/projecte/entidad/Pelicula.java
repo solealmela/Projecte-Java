@@ -1,4 +1,5 @@
 package com.projecte.entidad;
-public class Actor {
+public class Pelicula {
+
     
 }

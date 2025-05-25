@@ -25,6 +25,7 @@ public class Login {
                 if (datos.length >= 5) {
                     if (datos[1].equals(usuario) && datos[4].equals(contrasenya)) {
                         System.out.println("Bienvenido/a, " + usuario);
+                        System.out.println("Bienvenido/a, " + usuario);
                         accesoConcedido = true;
                         break;
                     }

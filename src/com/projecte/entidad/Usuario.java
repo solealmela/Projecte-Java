@@ -1,6 +1,4 @@
-package com.projecte.usuarios;
-
-import com.projecte.entidad.*;
+package com.projecte.entidad;
 
 public class Usuario extends Persona {
     
@@ -55,7 +53,7 @@ public class Usuario extends Persona {
         this.contrasenya = contrasenya;
     }
   
-    @Override
+@Override
     public String toString() {
         return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario
                 + "]";
