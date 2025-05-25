@@ -4,11 +4,11 @@ import com.projecte.entidad.*;
 
 public class Usuario extends Persona {
     
-    int id;
-    String rol;
-    String poblacion;
-    String nombreUsuario; //Lo introducimos cada vez que se accede
-    String contrasenya;
+    private int id;
+    private String rol;
+    private String poblacion;
+    private String nombreUsuario;
+    private String contrasenya;
 
     public Usuario(String nombre, String apellido, String fechaNacimiento, int id, String poblacion, String nombreUsuario, String contrasenya) {
         super(nombre, apellido, fechaNacimiento);

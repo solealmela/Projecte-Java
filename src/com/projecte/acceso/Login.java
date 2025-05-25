@@ -9,14 +9,11 @@ public class Login {
 
     public void login(){
         Scanner sc = new Scanner(System.in);
-        String contrasenya="";
-        String contrasenyaconfirmar="";
-        
         try {
             System.out.println("Introduce el nombre de usuario:");
             String usuario = sc.nextLine();
             System.out.println("Introduce la contraseña:");
-            contrasenya = sc.nextLine();
+            String contrasenya = sc.nextLine();
             
             BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/usuarios/archivoUsuarios.txt"));
             String linea;
@@ -41,8 +38,10 @@ public class Login {
             lector.close();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
-        } finally {
-            sc.close(); // Se cierra el Scanner
+        } catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            // sc.close(); // Se cierra el Scanner si eres imbecil
         }
 
     }

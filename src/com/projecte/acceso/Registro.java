@@ -11,18 +11,17 @@ import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Registro {
-    
+
     private Scanner sc = new Scanner(System.in);
     private static final String ARCHIVO = "src/com/projecte/usuarios/archivoUsuarios.txt";
 
     public void obtenerDatos() {
-        //Creamos el ID de cada usuario a partir de las líneas que haya en el archivo
+        // Creamos el ID de cada usuario a partir de las líneas que haya en el archivo
         int id = 0;
 
         try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO))) {
-            while (br.readLine() != null) {
-                id++;
-            }
+            id = (int) br.lines().count();
+
         } catch (IOException e) {
             System.out.println("Error al obtener la id: " + e.getMessage());
         }
@@ -30,68 +29,70 @@ public class Registro {
         System.out.print("\nIntroduce tu nombre de usuario: ");
         String nombreUsuario = sc.nextLine();
 
-        //Comprobamos que ese nombre de usuario no está en uso
+        // Comprobamos que ese nombre de usuario no está en uso
         if (!existeDato(nombreUsuario, 1)) {
             System.out.print("Introduce tus apellidos: ");
             String apellidos = sc.nextLine();
-            
+
             System.out.print("Introduce tu email: ");
             String email = sc.nextLine();
 
-            //Comprobamos que el email contenga '@' y no esté en uso
+            // Comprobamos que el email contenga '@' y no esté en uso
             if (validarEmail(email)) {
-                if (!existeDato(email,3)) {
+                if (!existeDato(email, 3)) {
                     System.out.print("Introduce tu contraseña: ");
                     String contrasenya = sc.nextLine();
                     System.out.print("Repite la contraseña: ");
                     String verificarContrasenya = sc.nextLine();
 
-                    //Comprobamos si las contraseñas coinciden
+                    // Comprobamos si las contraseñas coinciden
                     if (contrasenya.equals(verificarContrasenya)) {
                         System.out.print("Introduce tu población: ");
                         String poblacion = sc.nextLine();
-                        
+
                         System.out.print("Introduce tu fecha de nacimiento (dd-MM-YYYY): ");
                         String fechaNacimiento = sc.nextLine();
 
-                        //Validamos que el formato de la fecha sea correcto
+                        // Validamos que el formato de la fecha sea correcto
                         if (validarFecha(fechaNacimiento)) {
 
-                            //Si todos los datos son correctos, los escribimos en el archivo 'archivoUsuarios.txt'
+                            // Si todos los datos son correctos, los escribimos en el archivo
+                            // 'archivoUsuarios.txt'
                             try (BufferedWriter out = new BufferedWriter(new FileWriter(ARCHIVO, true))) {
-                                String datos = id + ":" + nombreUsuario + ":" + apellidos + ":" + email + ":" + contrasenya + ":" + poblacion + ":" + fechaNacimiento;
+                                String datos = id + ":" + nombreUsuario + ":" + apellidos + ":" + email + ":"
+                                        + contrasenya + ":" + poblacion + ":" + fechaNacimiento;
                                 out.write(datos);
                                 out.newLine();
 
-                                System.out.println("\nUsuario creado correctamente\n"); 
+                                System.out.println("\nUsuario creado correctamente");
                             } catch (IOException e) {
-                                    System.out.println("Error al crear el usuario: " + e.getMessage());
+                                System.out.println("Error al crear el usuario: " + e.getMessage());
                             }
 
                         } else {
-                            System.out.println("\nFormato de fecha incorrecto\n");
+                            System.out.println("\nFormato de fecha incorrecto");
                         }
 
                     } else {
-                        System.out.println("\nLas contraseñas no coinciden\n");
+                        System.out.println("\nLas contraseñas no coinciden");
                     }
                 } else {
-                    System.out.println("\nEse email ya está en uso\n");
-                }                
+                    System.out.println("\nEse email ya está en uso");
+                }
             } else {
-                System.out.println("\nFormato incorrecto de email\n");
+                System.out.println("\nFormato incorrecto de email");
             }
         } else {
-            System.out.println("\nNombre de usuario no disponible\n");
+            System.out.println("\nNombre de usuario no disponible");
         }
     }
 
-    //Método para validar que el email contiene '@'
+    // Método para validar que el email contiene '@'
     public boolean validarEmail(String email) {
         return email.indexOf('@') != -1;
     }
 
-    //Método para comprobar si algún dato único (nombreUsuario, email) existe
+    // Método para comprobar si algún dato único (nombreUsuario, email) existe
     public boolean existeDato(String dato, int posicionDato) {
         boolean encontrado = false;
 
@@ -114,7 +115,7 @@ public class Registro {
         return encontrado;
     }
 
-    //Método para comprobar el formato de la fecha
+    // Método para comprobar el formato de la fecha
     public boolean validarFecha(String fecha) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         try {

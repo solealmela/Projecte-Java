@@ -1,39 +1,36 @@
 package com.projecte.main;
 import java.util.Scanner;
 
-import com.projecte.acceso.Registro;
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
 
 public class ProgramaPrincipal {
-    static Scanner sc = new Scanner(System.in);
-    static int opcion;
-
     public static void main(String[] args) {
-        mostrarMenu();
-        opcion=sc.nextInt();
-        switch (opcion) {
-            case 1:
-                registreUsuari();
-            break;
-            case 2:
-                loginUsuario();
-            break;
-            case 3:
-                
-            break;
-        }
+        Scanner sc = new Scanner(System.in);
+        int opcion;
         
-    } //fin main
-    public static void loginUsuario(){
-        Login login = new Login();
-        login.login();
-    }
+        do {
+            mostrarMenu();
+            opcion = sc.nextInt();
 
-    public static void registreUsuari(){
-        Registro registro1 = new Registro();
-        registro1.obtenerDatos();
-    }
+            switch (opcion) {
+                case 1:
+                    new Registro().obtenerDatos();
+                    break;
+                case 2:
+                    new Login().login();
+                    break;
+                case 3:
+                    System.out.println("Saliendo...");
+                    break;
+                default: 
+                    System.out.println("Opción incorrecta");
+                    break;
+            }
+
+        } while (opcion != 3);
+
+    } //fin main
 
     public static void mostrarMenu(){
         String[] opciones = {"Registro","Inicio de sesión","Salir"};
