@@ -63,14 +63,21 @@ public class Registro {
                                 out.write(datos);
                                 out.newLine();
 
-                                String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + nombreUsuario;
+                                String [] separarCorreo = email.split("@");
+                                String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + id + separarCorreo[0];
                                 java.io.File carpetaUsuario = new java.io.File(rutaCarpetaUsuario);
                                 if (!carpetaUsuario.exists()) {
-                                    if (carpetaUsuario.mkdir()) {
-                                        System.out.println("Carpeta del usuario creada correctamente en: " + rutaCarpetaUsuario);
-                                    } else {
+                                    if (!carpetaUsuario.mkdir()) {
                                         System.out.println("No se pudo crear la carpeta del usuario");
                                     }
+                                }
+
+                                try {
+                                    new java.io.File(rutaCarpetaUsuario + "/archivoActores.llista").createNewFile();
+                                    new java.io.File(rutaCarpetaUsuario + "/archivoDirectores.llista").createNewFile();
+                                    new java.io.File(rutaCarpetaUsuario + "/archivoPeliculas.llista").createNewFile();
+                                } catch (IOException e) {
+                                    System.out.println("Error al crear los archivos del usuario: " + e.getMessage());
                                 }
 
                                 System.out.println("\nUsuario creado correctamente");
