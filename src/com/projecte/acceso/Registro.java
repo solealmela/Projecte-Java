@@ -56,13 +56,22 @@ public class Registro {
                         // Validamos que el formato de la fecha sea correcto
                         if (validarFecha(fechaNacimiento)) {
 
-                            // Si todos los datos son correctos, los escribimos en el archivo
-                            // 'archivoUsuarios.txt'
+                            // Si todos los datos son correctos, los escribimos en el archivo 'archivoUsuarios.txt'
                             try (BufferedWriter out = new BufferedWriter(new FileWriter(ARCHIVO, true))) {
                                 String datos = id + ":" + nombreUsuario + ":" + apellidos + ":" + email + ":"
                                         + contrasenya + ":" + poblacion + ":" + fechaNacimiento;
                                 out.write(datos);
                                 out.newLine();
+
+                                String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + nombreUsuario;
+                                java.io.File carpetaUsuario = new java.io.File(rutaCarpetaUsuario);
+                                if (!carpetaUsuario.exists()) {
+                                    if (carpetaUsuario.mkdir()) {
+                                        System.out.println("Carpeta del usuario creada correctamente en: " + rutaCarpetaUsuario);
+                                    } else {
+                                        System.out.println("No se pudo crear la carpeta del usuario");
+                                    }
+                                }
 
                                 System.out.println("\nUsuario creado correctamente");
                             } catch (IOException e) {
