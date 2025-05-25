@@ -1,0 +1,17 @@
+package com.projecte.entidad;
+
+public class Actor extends Persona {
+    
+    static private int id;
+    static private String archivo = "src/com/projecte/usuarios/"+id+"/archivoActores.llista";
+
+
+    public Actor(String nombre, String apellido, String fechaNacimiento) {
+        super(nombre, apellido, fechaNacimiento);
+    }
+
+    public void crearActor(){
+
+    }
+    
+}
