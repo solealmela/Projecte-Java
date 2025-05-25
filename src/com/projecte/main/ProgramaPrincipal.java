@@ -21,7 +21,7 @@ public class ProgramaPrincipal {
                     new Login().login();
                     break;
                 case 3:
-                    System.out.println("Saliendo...");
+                    System.out.println("Saliendo...\n");
                     break;
                 default: 
                     System.out.println("Opción incorrecta");
