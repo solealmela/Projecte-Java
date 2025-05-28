@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
-import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
 
