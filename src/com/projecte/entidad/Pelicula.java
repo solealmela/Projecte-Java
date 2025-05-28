@@ -2,7 +2,7 @@ package com.projecte.entidad;
 
 import java.util.ArrayList;
 
-public class Pelicula {
+public class Pelicula implements Comparable {
 
     private int id;
     private int duracionMinutos;
@@ -16,6 +16,12 @@ public class Pelicula {
         this.nombre = nombre;
         this.actoresDeLaPeli = actoresDeLaPeli;
         this.director = director;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
 
     
