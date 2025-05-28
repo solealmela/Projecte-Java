@@ -1,6 +1,6 @@
 package com.projecte.entidad;
 
-public class Director extends Persona {
+public class Director extends Gestionable {
     
     static private int id;
     static private String archivo = "src/com/projecte/usuarios/"+id+"/archivoDirectores.llista";

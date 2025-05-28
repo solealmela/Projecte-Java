@@ -1,11 +1,11 @@
 package com.projecte.entidad;
-public abstract class Persona {
+public abstract class Gestionable {
 
     private String nombre;
     private String apellido;
     private String fechaNacimiento;
 
-    public Persona(String nombre, String apellido, String fechaNacimiento) {
+    public Gestionable(String nombre, String apellido, String fechaNacimiento) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.fechaNacimiento = fechaNacimiento;

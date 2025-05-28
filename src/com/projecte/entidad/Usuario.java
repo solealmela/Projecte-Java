@@ -1,6 +1,6 @@
 package com.projecte.entidad;
 
-public class Usuario extends Persona {
+public class Usuario extends Gestionable {
     
     private int id;
     private String rol;
