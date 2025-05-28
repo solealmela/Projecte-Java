@@ -26,8 +26,7 @@ public class Pelicula implements Comparable {
         this.id = id;
     }
 
-
-        public int compareTo(Pelicula o) {
+        public int compareTo(Pelicula o) { //Ordena de forma natural per titol
         try {
             if (this.getId()>o.getId()) {
                 System.out.println("Estás comparando lo mismo");

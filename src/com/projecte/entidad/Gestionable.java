@@ -1,6 +1,8 @@
 package com.projecte.entidad;
 public abstract class Gestionable {
-
+    
+    private String resum;
+    private String detalls;
     private String nombre;
     private String apellido;
     private String fechaNacimiento;
