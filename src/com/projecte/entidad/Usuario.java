@@ -48,11 +48,11 @@ public class Usuario extends Gestionable {
     public String getContrasenya() {
         return contrasenya;
     }
-  
+
     public void setContrasenya(String contrasenya) {
         this.contrasenya = contrasenya;
     }
-  
+
 @Override
     public String toString() {
         return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario
