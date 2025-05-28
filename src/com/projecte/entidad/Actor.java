@@ -1,6 +1,6 @@
 package com.projecte.entidad;
 
-public class Actor extends Persona {
+public class Actor extends Gestionable {
     
     static private int id;
     static private String archivo = "src/com/projecte/usuarios/"+id+"/archivoActores.llista";
@@ -8,6 +8,7 @@ public class Actor extends Persona {
 
     public Actor(String nombre, String apellido, String fechaNacimiento) {
         super(nombre, apellido, fechaNacimiento);
+        id++;
     }
 
     public void crearActor(){

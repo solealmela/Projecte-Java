@@ -10,5 +10,13 @@ public class Pelicula {
     private ArrayList actoresDeLaPeli= new ArrayList<>();
     private Director director;
 
+    public Pelicula(int duracionMinutos, String nombre, ArrayList actoresDeLaPeli, Director director) {
+        id++;
+        this.duracionMinutos = duracionMinutos;
+        this.nombre = nombre;
+        this.actoresDeLaPeli = actoresDeLaPeli;
+        this.director = director;
+    }
+
     
 }
