@@ -15,7 +15,6 @@ public class ProgramaPrincipal {
         int opcion;
         
         do {
-
             try {
                 menuInicio.mostrarMenu();
                 opcion = sc.nextInt();
@@ -26,22 +25,13 @@ public class ProgramaPrincipal {
             }
 
             switch (opcion) {
-                case 1:
-                    new Registro().obtenerDatos();
-                    break;
-                case 2:
-                    new Login().login();
-                    break;
-                case 3:
-                    System.out.println("Saliendo...\n");
-                    break;  
-                default: 
-                    if (opcion != -1) {
-                        System.out.println("Opción incorrecta");
-                    }
-                    break;
+                case 1 -> new Registro().obtenerDatos();
+                case 2 -> new Login().login();
+                case 3 -> System.out.println("Saliendo...\n");  
+                default -> {
+                    if (opcion != -1) System.out.println("Opción incorrecta\n");
+                }
             }
-
         } while (opcion != 3);
 
     } //fin main
