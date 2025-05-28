@@ -1,4 +1,5 @@
 package com.projecte.main;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.projecte.menus.*;
@@ -13,8 +14,15 @@ public class ProgramaPrincipal {
         int opcion;
         
         do {
-            menuInicio.mostrarMenu();
-            opcion = sc.nextInt();
+
+            try {
+                menuInicio.mostrarMenu();
+                opcion = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("No has introducido una opción válida\n");
+                sc.nextLine();
+                opcion = -1;
+            }
 
             switch (opcion) {
                 case 1:
@@ -25,9 +33,11 @@ public class ProgramaPrincipal {
                     break;
                 case 3:
                     System.out.println("Saliendo...\n");
-                    break;
+                    break;  
                 default: 
-                    System.out.println("Opción incorrecta");
+                    if (opcion != -1) {
+                        System.out.println("Opción incorrecta");
+                    }
                     break;
             }
 
@@ -36,8 +46,6 @@ public class ProgramaPrincipal {
     } //fin main
 
     public static void menuInicioUsuario(){
-        String[] opciones = {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"};
-        Menu menuUsuario = new Menu("Menu Usuarios", opciones);
-        menuUsuario.mostrarMenu();
+        String[] opciones = {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores"};
     }
 }
