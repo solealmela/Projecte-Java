@@ -35,12 +35,6 @@ public class ProgramaPrincipal {
 
     } //fin main
 
-    public static void mostrarMenu(){
-        String[] opciones = {"Registro","Inicio de sesión","Salir"};
-        Menu menuInicio = new Menu("Menu de inicio", opciones);
-        menuInicio.mostrarMenu();
-    }
-
     public static void menuInicioUsuario(){
         String[] opciones = {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"};
         Menu menuUsuario = new Menu("Menu Usuarios", opciones);
