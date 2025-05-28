@@ -1,4 +1,5 @@
 package com.projecte.main;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import com.projecte.menus.*;
@@ -14,26 +15,24 @@ public class ProgramaPrincipal {
         int opcion;
         
         do {
-            menuInicio.mostrarMenu();
-            opcion = sc.nextInt();
-
-            switch (opcion) {
-                case 1:
-                    new Registro().obtenerDatos();
-                    break;
-                case 2:
-                    new Login().login();
-                    break;
-                case 3:
-                    System.out.println("Saliendo...\n");
-                    break;
-                default: 
-                    System.out.println("Opción incorrecta");
-                    break;
+            try {
+                menuInicio.mostrarMenu();
+                opcion = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("No has introducido una opción válida\n");
+                sc.nextLine();
+                opcion = -1;
             }
 
+            switch (opcion) {
+                case 1 -> new Registro().obtenerDatos();
+                case 2 -> new Login().login();
+                case 3 -> System.out.println("Saliendo...\n");  
+                default -> {
+                    if (opcion != -1) System.out.println("Opción incorrecta\n");
+                }
+            }
         } while (opcion != 3);
 
     } //fin main
-
 }
