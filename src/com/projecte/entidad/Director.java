@@ -10,9 +10,32 @@ public class Director extends Gestionable implements Comparable {
         id++;
     }
 
+        public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Director.id = id;
+    }
+
+
+        public int compareTo(Director o) {
+        try {
+            if (this.getId()>o.getId()) {
+                System.out.println("Estás comparando lo mismo");
+            }else{
+                System.out.println("No son iguales");;
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     @Override
     public int compareTo(Object o) {
-        // TODO Auto-generated method stub
+        //Este metodo se ejecuta si el objeto que le pasamos es un objeto no de tipo Director
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
 
