@@ -26,7 +26,7 @@ public class ProgramaPrincipal {
 
             switch (opcion) {
                 case 1 -> new Registro().obtenerDatos();
-                case 2 -> new Login().login();
+                case 2 -> {new Login().login();}
                 case 3 -> System.out.println("Saliendo...\n");  
                 default -> {
                     if (opcion != -1) System.out.println("Opción incorrecta\n");
