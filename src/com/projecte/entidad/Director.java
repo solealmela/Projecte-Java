@@ -7,7 +7,7 @@ public class Director extends Persona {
 
     public Director(String nombre, String apellido, String fechaNacimiento) {
         super(nombre, apellido, fechaNacimiento);
-        //TODO Auto-generated constructor stub
+        id++;
     }
 
     
