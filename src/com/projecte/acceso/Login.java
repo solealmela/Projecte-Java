@@ -7,41 +7,45 @@ import java.util.Scanner;
 
 public class Login {
 
-    public void login(){
+    public void login() {
         Scanner sc = new Scanner(System.in);
-        try {
-            System.out.print("Introduce el nombre de usuario: ");
-            String usuario = sc.nextLine();
-            System.out.print("Introduce la contraseña: ");
-            String contrasenya = sc.nextLine();
-            
-            BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/usuarios/archivoUsuarios.txt"));
+        System.out.print("Introduce el nombre de usuario: ");
+        String usuario = sc.nextLine();
+        System.out.print("Introduce la contraseña: ");
+        String contrasenya = sc.nextLine();
+
+        //Booleanos para identificar el error
+        boolean usuarioEncontrado = false;
+        boolean accesoConcedido = false;
+
+        try (BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/usuarios/archivoUsuarios.txt"))) {
             String linea;
-            boolean accesoConcedido = false;
 
             while ((linea = lector.readLine()) != null) {
                 String[] datos = linea.split(":");
 
                 if (datos.length >= 5) {
-                    if (datos[1].equals(usuario) && datos[4].equals(contrasenya)) {
-                        System.out.println("Bienvenido/a, " + usuario);
-                        System.out.println("Bienvenido/a, " + usuario);
-                        accesoConcedido = true;
-                        break;
+                    if (datos[1].equals(usuario)) {
+                        usuarioEncontrado = true;
+                        if (datos[4].equals(contrasenya)) {
+                            accesoConcedido = true;
+                            System.out.println("Bienvenido/a, " + usuario);
+                            break;
+                        }
                     }
                 }
             }
 
-            if (!accesoConcedido) {
-                System.out.println("Usuario o contraseña incorrectos.");
+            if (!usuarioEncontrado) {
+                System.out.println("Error, el usuario no existe.");
+            } else if (!accesoConcedido) {
+                System.out.println("Error, contraseña incorrecta.");
             }
 
-            lector.close();
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
-        } catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 }

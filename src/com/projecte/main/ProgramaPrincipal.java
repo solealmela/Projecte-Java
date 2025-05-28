@@ -5,12 +5,15 @@ import com.projecte.menus.*;
 import com.projecte.acceso.*;
 
 public class ProgramaPrincipal {
+
+    private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
         
         do {
-            mostrarMenu();
+            menuInicio.mostrarMenu();
             opcion = sc.nextInt();
 
             switch (opcion) {
@@ -21,7 +24,7 @@ public class ProgramaPrincipal {
                     new Login().login();
                     break;
                 case 3:
-                    System.out.println("Saliendo...");
+                    System.out.println("Saliendo...\n");
                     break;
                 default: 
                     System.out.println("Opción incorrecta");
@@ -31,12 +34,6 @@ public class ProgramaPrincipal {
         } while (opcion != 3);
 
     } //fin main
-
-    public static void mostrarMenu(){
-        String[] opciones = {"Registro","Inicio de sesión","Salir"};
-        Menu menuInicio = new Menu("Menu de inicio", opciones);
-        menuInicio.mostrarMenu();
-    }
 
     public static void menuInicioUsuario(){
         String[] opciones = {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores"};
