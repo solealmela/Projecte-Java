@@ -1,12 +1,11 @@
 package com.projecte.entidad;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class Usuario extends Persona {
-    
+public class Usuario extends Gestionable {
+
     private int id;
     private String rol;
     private String poblacion;
