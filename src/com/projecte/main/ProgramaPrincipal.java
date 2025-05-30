@@ -13,6 +13,7 @@ public class ProgramaPrincipal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
+        boolean correctoInicioSesion = false;
         
         do {
             try {
@@ -26,13 +27,18 @@ public class ProgramaPrincipal {
 
             switch (opcion) {
                 case 1 -> new Registro().obtenerDatos();
-                case 2 -> {new Login().login();}
+                case 2 -> {
+                    correctoInicioSesion = new Login().login();
+                    if (correctoInicioSesion) {
+                        menuUsuario.mostrarMenu();
+                    }
+                }
                 case 3 -> System.out.println("Saliendo...\n");  
                 default -> {
                     if (opcion != -1) System.out.println("Opción incorrecta\n");
                 }
             }
-        } while (opcion != 3);
+        } while (opcion != 3 && correctoInicioSesion == false);
 
     } //fin main
 }
