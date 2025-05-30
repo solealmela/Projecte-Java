@@ -37,5 +37,4 @@ public class Menu {
     public void listarDirectores() {
 
     }
-    //Wenos dias
 }
