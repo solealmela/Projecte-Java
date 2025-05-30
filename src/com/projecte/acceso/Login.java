@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Login {
 
-    public String login() {
+    public boolean login() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduce el nombre de usuario: ");
         String usuario = sc.nextLine();
@@ -30,7 +30,7 @@ public class Login {
                         if (datos[4].equals(contrasenya)) {
                             accesoConcedido = true;
                             System.out.println("Bienvenido/a, " + usuario);
-                            return usuario;
+                            return true;
                         }
                     }
                 }
@@ -48,6 +48,7 @@ public class Login {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return null;
+
+        return false;
     }
 }

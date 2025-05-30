@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
-import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
 
@@ -16,9 +15,7 @@ public class ProgramaPrincipal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
-        Login login= new Login();
-        String nombre="";
-        
+        boolean correctoInicioSesion = false;        
         do {
             try {
                 menuInicio.mostrarMenu();
@@ -30,21 +27,19 @@ public class ProgramaPrincipal {
             }
 
             switch (opcion) {
-                case 1-> new Registro().obtenerDatos();
-                case 2-> {nombre=login.login();
-                    if (nombre.trim()=="") { //Si el nombre está vacío
-                        if (nombre=="administrador") {
-                            
-                        }
+                case 1 -> new Registro().obtenerDatos();
+                case 2 -> {
+                    correctoInicioSesion = new Login().login();
+                    if (correctoInicioSesion) {
                         menuUsuario.mostrarMenu();
                     }
                 }
-                case 3-> System.out.println("Saliendo...\n");
-                default-> {
+                case 3 -> System.out.println("Saliendo...\n");  
+                default -> {
                     if (opcion != -1) System.out.println("Opción incorrecta\n");
                 }
             }
-        } while (opcion != 3);
+        } while (opcion != 3 && correctoInicioSesion == false);
 
     } //fin main
 }
