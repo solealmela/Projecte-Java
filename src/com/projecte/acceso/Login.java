@@ -41,7 +41,6 @@ public class Login {
             } else if (!accesoConcedido) {
                 System.out.println("Error, contraseña incorrecta.");
             }
-            return null;
 
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
