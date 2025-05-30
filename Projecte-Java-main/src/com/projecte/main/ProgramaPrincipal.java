@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
-import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
     private static Menu menuAdministrador = new Menu("menu Administrador", new String[] {"Añadir Directores","Añadir Actores","Añadir Peliculas","Eliminar Usuarios","Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
@@ -14,7 +13,7 @@ public class ProgramaPrincipal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
-        
+        boolean correctoInicioSesion = false;        
         do {
             try {
                 menuInicio.mostrarMenu();
@@ -27,13 +26,18 @@ public class ProgramaPrincipal {
 
             switch (opcion) {
                 case 1 -> new Registro().obtenerDatos();
-                case 2 -> new Login().login();
+                case 2 -> {
+                    correctoInicioSesion = new Login().login();
+                    if (correctoInicioSesion) {
+                        menuUsuario.mostrarMenu();
+                    }
+                }
                 case 3 -> System.out.println("Saliendo...\n");  
                 default -> {
                     if (opcion != -1) System.out.println("Opción incorrecta\n");
                 }
             }
-        } while (opcion != 3);
+        } while (opcion != 3 && correctoInicioSesion == false);
 
     } //fin main
 }

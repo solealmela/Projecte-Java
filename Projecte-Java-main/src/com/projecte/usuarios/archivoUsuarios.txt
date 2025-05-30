@@ -1,4 +1,1 @@
-id:nombre:apellidos:correo:contrasena:poblacion:fecha
 0:administrador:admin:admin@admin.com:admin123:administrador:11-11-1111
-
-3:ANTUAN:guillen:antu@ham.com:123:xa:04-10-2005
