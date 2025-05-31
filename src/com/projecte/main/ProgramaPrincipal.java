@@ -7,15 +7,16 @@ import com.projecte.acceso.*;
 
 public class ProgramaPrincipal {
 
+    private static Menu menuAdministrador = new Menu("menu Administrador", new String[] {"Añadir Directores","Añadir Actores","Añadir Peliculas","Eliminar Usuarios","Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
-    private static Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
-    private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Eliminar Usuario","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
-
-
+    private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
-        boolean correctoInicioSesion = false;        
+
+        boolean correctoInicioSesion = false;      
+        String nombreUsuario = "";
+        
         do {
             try {
                 menuInicio.mostrarMenu();
@@ -29,9 +30,16 @@ public class ProgramaPrincipal {
             switch (opcion) {
                 case 1 -> new Registro().obtenerDatos();
                 case 2 -> {
-                    correctoInicioSesion = new Login().login();
-                    if (correctoInicioSesion) {
-                        menuUsuario.mostrarMenu();
+                    menuUsuario.mostrarMenu();
+                    Login login = new Login();
+                    correctoInicioSesion = login.login();
+                    nombreUsuario = login.getNombreUsuario();
+                    if (correctoInicioSesion){
+                        if (nombreUsuario.equals("administrador")) {
+                            menuAdministrador.mostrarMenu();
+                        } else {
+                            menuUsuario.mostrarMenu();
+                        }
                     }
                 }
                 case 3 -> System.out.println("Saliendo...\n");  
@@ -39,7 +47,8 @@ public class ProgramaPrincipal {
                     if (opcion != -1) System.out.println("Opción incorrecta\n");
                 }
             }
-        } while (opcion != 3 && correctoInicioSesion == false);
-
-    } //fin main
+        }while (opcion != 3 && correctoInicioSesion == false);
+            
+    }
 }
+

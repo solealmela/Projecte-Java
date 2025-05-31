@@ -7,6 +7,8 @@ import java.util.Scanner;
 
 public class Login {
 
+    private String nombreUsuario;
+
     public boolean login() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduce el nombre de usuario: ");
@@ -30,6 +32,7 @@ public class Login {
                         if (datos[4].equals(contrasenya)) {
                             accesoConcedido = true;
                             System.out.println("Bienvenido/a, " + usuario);
+                            this.nombreUsuario = usuario;
                             return true;
                         }
                     }
@@ -41,14 +44,16 @@ public class Login {
             } else if (!accesoConcedido) {
                 System.out.println("Error, contraseña incorrecta.");
             }
-            return null;
 
         } catch (IOException e) {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         } catch (Exception e) {
             e.printStackTrace();
         }
+            return accesoConcedido;
+    }
 
-        return false;
+    public String getNombreUsuario() {
+        return nombreUsuario;
     }
 }
