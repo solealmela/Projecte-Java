@@ -95,6 +95,35 @@ public class Usuario extends Gestionable {
         } catch (IOException e) {
             System.out.println("Error al leer el fichero: " + e.getMessage());
         }
+        agregarEntidades(rutaFicheroPeliculas, null); //obtengo la lista del fichero que está viendo y su opcion
+    }
+
+    public void agregarEntidades(int rutaFicheroPeliculas,Usuario usuario){
+        String archivoSalida = null;
+        switch (rutaFicheroPeliculas) {
+            case 1 -> archivoSalida = "Projecte-Java/src/com/projecte/datos/actor.dades";
+            case 2 -> archivoSalida = "Projecte-Java/src/com/projecte/datos/peliculas.dades";
+            case 3 -> archivoSalida = "Projecte-Java/src/com/projecte/datos/director.dades";
+            case 4 -> archivoSalida = "Regresando"; 
+            default -> {
+                System.out.println("Opcion in valida");
+                return;
+            }
+        }
+        System.out.println("Añadiendo datos en "+ archivoSalida);
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivoSalida))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                System.out.println("llinea "+ linea);
+
+                
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 
 @Override
