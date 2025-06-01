@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
+import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
     private static Menu menuAdministrador = new Menu("menu Administrador", new String[] {"Añadir Directores","Añadir Actores","Añadir Peliculas","Eliminar Usuarios","Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
@@ -15,6 +16,7 @@ public class ProgramaPrincipal {
         int opcion;
         boolean correctoInicioSesion = false;      
         String nombreUsuario = "";
+        Usuario usuario ;
         
         do {
             try {
@@ -37,7 +39,7 @@ public class ProgramaPrincipal {
                         } else {
                             menuUsuario.mostrarMenu();
                             opcion = sc.nextInt();
-                            switch (opcion) {
+                            switch (opcion) { //sub menu
                                 case 1 -> menuUsuario.mostrarMenu();
             
                                 default -> {
