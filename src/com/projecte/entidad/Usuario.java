@@ -55,14 +55,6 @@ public class Usuario extends Gestionable {
         this.poblacion = poblacion;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
     public String getContrasenya() {
         return contrasenya;
     }
@@ -89,7 +81,7 @@ public class Usuario extends Gestionable {
             }
         }
     
-        System.out.println("Comprobando archivos en: " + rutaArchivo.substring(23));
+        System.out.println("Comprobando archivos de"+this.getNombre()+ " en:" + rutaArchivo.substring(23));
     
         try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
@@ -135,15 +127,17 @@ public class Usuario extends Gestionable {
                 nombreArchivo = "archivoPeliculas.llista";}
                 case 3 -> {archivoSalida = "src/com/projecte/datos/director.dades";
                 nombreArchivo = "archivoDirectores.llista";}
-                case 4 -> {archivoSalida = "Regresando"; 
-                return;}
+                case 4 -> { 
+                    System.out.println("Saliendo");
+                return;
+                }
                 default -> {
                     System.out.println("Opcion in valida");
                     return;
                 }
             }
-
             String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId()) + usuario.getNombre()+"/"; //ruta carpeta + la carpeta usuario         
+
             File carpetaUsuario = new File(rutaCarpetaUsuario);
 
             //verificamos que existe la carpeta
@@ -184,6 +178,7 @@ public class Usuario extends Gestionable {
                     System.out.println("No se encontró ninguna entidad con ID: " + idEntidadBuscada);
                 } else {
                     System.out.println("Entidad copiada correctamente a: " + archivoDestino);
+
                 }
             } catch (IOException e) {
                 e.printStackTrace();
