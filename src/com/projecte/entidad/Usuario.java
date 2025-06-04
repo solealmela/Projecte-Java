@@ -186,8 +186,6 @@ public class Usuario extends Gestionable {
 
             System.out.println("deseas agregar otro? S/N");
             opcion = scanner.nextLine();
-            
-
         }
 
 

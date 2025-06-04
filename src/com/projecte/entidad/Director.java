@@ -22,7 +22,7 @@ public class Director extends Gestionable implements Comparable<Director> {
                 System.out.println("Estás comparando lo mismo");
             } else {
                 System.out.println("No son iguales");
-                ;
+                
             }
 
         } catch (Exception e) {
