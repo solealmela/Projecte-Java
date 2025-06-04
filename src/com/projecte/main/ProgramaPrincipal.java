@@ -1,12 +1,6 @@
 package com.projecte.main;
 import java.util.InputMismatchException;
-import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import com.projecte.menus.*;
-import com.projecte.acceso.*;
-import com.projecte.entidad.Usuario;
-
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
 import com.projecte.entidad.Usuario;
