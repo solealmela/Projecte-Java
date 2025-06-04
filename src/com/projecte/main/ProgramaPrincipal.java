@@ -14,10 +14,9 @@ public class ProgramaPrincipal {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
-        boolean correctoInicioSesion = false;      
+        boolean correctoInicioSesion = false;     
         String nombreUsuario = "";
-        Usuario usuario ;
-        
+
         do {
             try {
                 menuInicio.mostrarMenu();
@@ -34,20 +33,28 @@ public class ProgramaPrincipal {
                     correctoInicioSesion = login.login();
                     nombreUsuario = login.getNombreUsuario();
                     if (correctoInicioSesion) {
-                        if (nombreUsuario.equals("administrador")) {
-                            menuAdministrador.mostrarMenu();
-                        } else {
-                            menuUsuario.mostrarMenu();
-                            opcion = sc.nextInt();
+                        try {
+                            Usuario usuario = login.datosUsuario(login.getIdUsuario()); // datos del usuario logeado
+
+                            if (nombreUsuario.equals("administrador")) {
+                                menuAdministrador.mostrarMenu();
+                            } else {
+                                menuUsuario.mostrarMenu();
+                                opcion = sc.nextInt();
                             switch (opcion) { //sub menu
-                                case 1 -> menuUsuario.mostrarMenu();
-            
+                                case 1 -> {menuUsuario.mostrarMenu();
+                                    usuario.listar();}
                                 default -> {
                                     // x cosa
                                 }
                                     
                             }
                         }
+
+                        } catch (Exception e) {
+                            // TODO: handle exception
+                        }
+                       
                     }
                 }
                 case 3 -> System.out.println("Saliendo...\n");  

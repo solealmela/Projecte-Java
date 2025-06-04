@@ -1,13 +1,21 @@
 package com.projecte.acceso;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
+import com.projecte.entidad.Usuario;
+
 public class Login {
 
     private String nombreUsuario;
+    private String idUsuario; // nueva variable
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
 
     public boolean login() {
         Scanner sc = new Scanner(System.in);
@@ -33,6 +41,7 @@ public class Login {
                             accesoConcedido = true;
                             System.out.println("Bienvenido/a, " + usuario);
                             this.nombreUsuario = usuario;
+                            this.idUsuario = datos[0];
                             return true;
                         }
                     }
@@ -51,6 +60,29 @@ public class Login {
             e.printStackTrace();
         }
             return accesoConcedido;
+    }
+
+    public Usuario datosUsuario(String idUsuario) throws IOException{ // metodo para obtener los datos del usuario
+        try (BufferedReader leer= new BufferedReader(new FileReader("src/com/projecte/usuarios/archivoUsuarios.txt"))) {
+            String linea;
+            while ((linea = leer.readLine()) != null) {
+                String[] datos = linea.split(":");
+                if (datos.length >= 5 && datos[0].equals(idUsuario)) {
+                    int id =Integer.parseInt(datos[0]); //0
+                    String fechaNacimiento = datos[6];//6
+                    String rol = "ROL.USUARIO"; 
+                    String poblacion = datos[5]; // 5
+                    String nombreUsuario = datos[1]; //1
+                    String contrasenya = datos[4]; //4
+                    String email = datos[3]; // 3
+                    String apellido = datos[2] ; //2
+                   
+                    return new Usuario(nombreUsuario, apellido, fechaNacimiento, id, email, rol, poblacion, contrasenya);
+                }
+            }// fin while
+
+        }
+        return null;
     }
 
     public String getNombreUsuario() {

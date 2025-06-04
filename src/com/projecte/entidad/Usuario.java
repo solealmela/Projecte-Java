@@ -71,9 +71,11 @@ public class Usuario extends Gestionable {
         this.contrasenya = contrasenya;
     }
 
-    public void listar(int rutaFicheroPeliculas) {
+    public void listar() {
         String rutaArchivo = null;
         String descripcion = null;
+        
+        int rutaFicheroPeliculas = scanner.nextInt();
     
         switch (rutaFicheroPeliculas) {
             case 1 -> {
@@ -109,14 +111,22 @@ public class Usuario extends Gestionable {
         } catch (IOException e) {
             System.out.println("Error al leer el fichero: " + e.getMessage());
         }
-        agregarEntidades(rutaFicheroPeliculas, null); //obtengo la lista del fichero que está viendo y su opcion
+          System.out.println("deseas agregar algun archivo S/N");
+        String opcion = scanner.nextLine();
+        if (opcion.equalsIgnoreCase("s")) {
+             agregarEntidades(rutaFicheroPeliculas, null, opcion); //obtengo la lista del fichero que está viendo y su opcion
+        }else if (opcion.equalsIgnoreCase("n")) {
+            return;
+        }else{
+            System.out.println("Dato incorrecto"); //meterlo dentro de un while
+        }
+       
     }//fin listar
 
-    public void agregarEntidades(int rutaFicheroPeliculas,Usuario usuario){
+    public void agregarEntidades(int rutaFicheroPeliculas,Usuario usuario, String opcion){
         String archivoSalida = null;
-        String nombreArchivo;
-        System.out.println("deseas agregar algun archivo S/N");
-        String opcion = scanner.nextLine();
+        String nombreArchivo = null;
+      
         while (!opcion.equalsIgnoreCase("n")) { //bucle para añadir 
                 
             switch (rutaFicheroPeliculas) {
@@ -134,7 +144,7 @@ public class Usuario extends Gestionable {
                 }
             }
             String[] separaCorreo = usuario.getEmail().split("@");//separando los datos
-            String rutaCarpetaUsuario = "Projecte-Java/src/com/projecte/usuarios/" + usuario.getId() + separaCorreo[0]; //ruta carpeta + la carpeta usuario         
+            String rutaCarpetaUsuario = "Projecte-Java/src/com/projecte/usuarios/" + usuario.getId() + nombreUsuario; //ruta carpeta + la carpeta usuario         
             File carpetaUsuario = new File(rutaCarpetaUsuario);
 
             //verificamos que existe la carpeta
@@ -160,7 +170,7 @@ public class Usuario extends Gestionable {
                 e.printStackTrace();
             }
 
-            System.out.println("deseas agregar uno otro? S/N");
+            System.out.println("deseas agregar otro? S/N");
             opcion = scanner.nextLine();
 
         }
