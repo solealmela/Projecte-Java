@@ -7,7 +7,7 @@ public class Pelicula implements Comparable {
     private int id;
     private int duracionMinutos;
     private String nombre;
-    private ArrayList actoresDeLaPeli= new ArrayList<>();
+    private ArrayList actoresDeLaPeli = new ArrayList<>();
     private Director director;
 
     public Pelicula(int duracionMinutos, String nombre, ArrayList actoresDeLaPeli, Director director) {

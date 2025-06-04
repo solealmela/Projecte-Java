@@ -1,1 +1,2 @@
 0:administrador:admin:admin@admin.com:admin123:administrador:11-11-1111
+1:sole:almela:solealmela@gmail.com:123:enguera:13-02-2006

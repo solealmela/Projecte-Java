@@ -47,7 +47,11 @@ public class ProgramaPrincipal {
                     if (opcion != -1) System.out.println("Opción incorrecta\n");
                 }
             }
-        } while (opcion != 3 && correctoInicioSesion == false);
+        } while (opcion != 3 && !correctoInicioSesion);
+
+        sc.close();
+
+
 
     } //fin main
 }
