@@ -1,6 +1,11 @@
 package com.projecte.main;
 import java.util.InputMismatchException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import com.projecte.menus.*;
+import com.projecte.acceso.*;
+import com.projecte.entidad.Usuario;
 
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
@@ -43,9 +48,8 @@ public class ProgramaPrincipal {
                                 menuUsuario.mostrarMenu();
                                 opcion = sc.nextInt();
                             switch (opcion) { //submenu
-                                case 1, 2, 3 -> {
-                                usuario.listar(opcion);}
-                                case 4 ->{ menuInicio.mostrarMenu();
+                                case 1, 2, 3, 4, 5, 6 -> {
+                                usuario.listar(opcion);
                                 }
                                 default -> {
                                     // x cosa
