@@ -49,7 +49,6 @@ public class ProgramaPrincipal {
                                 default -> {
                                     // x cosa
                                 }
-                                    
                             }
                         }
 

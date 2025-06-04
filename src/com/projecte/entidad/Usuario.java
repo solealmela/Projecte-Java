@@ -179,6 +179,6 @@ public class Usuario extends Gestionable {
 @Override
     public String toString() {
         return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario
-                + "]";
+        + "]";
     }
 }
