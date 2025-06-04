@@ -127,8 +127,10 @@ public class Usuario extends Gestionable {
                 nombreArchivo = "archivoPeliculas.llista";}
                 case 3 -> {archivoSalida = "src/com/projecte/datos/director.dades";
                 nombreArchivo = "archivoDirectores.llista";}
-                case 4 -> {archivoSalida = "Regresando"; 
-                return;}
+                case 4 -> { 
+                    System.out.println("Saliendo");
+                return;
+                }
                 default -> {
                     System.out.println("Opcion in valida");
                     return;
@@ -152,7 +154,7 @@ public class Usuario extends Gestionable {
                 ) {
                 String linea;
                 while ((linea = br.readLine()) != null) {
-                    System.out.println("llinea "+ linea);
+                    System.out.println("linea "+ linea);
                     bw.write(linea);
                     bw.newLine(); //leer la linea y crear una nueva
                 }

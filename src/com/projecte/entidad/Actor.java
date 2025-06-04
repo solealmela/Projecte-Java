@@ -1,6 +1,6 @@
 package com.projecte.entidad;
 
-public class Actor extends Gestionable implements Comparable {
+public class Actor extends Gestionable implements Comparable<Actor> {
 
     static private int id;
     static private String archivo = "src/com/projecte/usuarios/"+id+"/archivoActores.llista";
@@ -36,9 +36,4 @@ public class Actor extends Gestionable implements Comparable {
         return 0;
     }
 
-    @Override
-    public int compareTo(Object o) {
-        //Este metodo se ejecuta si el objeto que le pasamos es un objeto no de tipo Actor
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
-    }
 }
