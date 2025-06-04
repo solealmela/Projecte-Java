@@ -14,7 +14,7 @@ public class Usuario extends Gestionable {
     private String poblacion;
     private String nombreUsuario;
     private String contrasenya;
-    private String email; // nueva variable para obtener el correo del usuario
+    private String email;
     private Scanner scanner = new Scanner(System.in); 
 
     public Usuario(String nombre, String apellido, String fechaNacimiento, int id, String poblacion, String nombreUsuario, String contrasenya,String email) {

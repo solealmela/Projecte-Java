@@ -1,23 +1,26 @@
 package com.projecte.entidad;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class Pelicula implements Comparable {
+public class Pelicula implements Comparable<Pelicula> {
+
+    private static int nextId = 1; // Generador de IDs únicos
 
     private int id;
     private int duracionMinutos;
     private String nombre;
-    private ArrayList actoresDeLaPeli = new ArrayList<>();
+    private List<Actor> actoresDeLaPeli = new ArrayList<>();
     private Director director;
 
-    public Pelicula(int duracionMinutos, String nombre, ArrayList actoresDeLaPeli, Director director) {
-        id++;
+    public Pelicula(int duracionMinutos, String nombre, List<Actor> actoresDeLaPeli, Director director) {
+        this.id = nextId++;
         this.duracionMinutos = duracionMinutos;
         this.nombre = nombre;
         this.actoresDeLaPeli = actoresDeLaPeli;
         this.director = director;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -26,25 +29,12 @@ public class Pelicula implements Comparable {
         this.id = id;
     }
 
-        public int compareTo(Pelicula o) { //Ordena de forma natural per titol
-        try {
-            if (this.getId()>o.getId()) {
-                System.out.println("Estás comparando lo mismo");
-            }else{
-                System.out.println("No son iguales");;
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
+    public String getNombre() {
+        return nombre;
     }
 
     @Override
-    public int compareTo(Object o) {
-        //Este metodo se ejecuta si el objeto que le pasamos es un objeto no de tipo Pelicula
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    public int compareTo(Pelicula otraPelicula) {
+        return this.nombre.compareToIgnoreCase(otraPelicula.getNombre());
     }
-
-    
 }

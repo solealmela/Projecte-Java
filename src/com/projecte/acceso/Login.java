@@ -67,14 +67,14 @@ public class Login {
             while ((linea = leer.readLine()) != null) {
                 String[] datos = linea.split(":");
                 if (datos.length >= 5 && datos[0].equals(idUsuario)) {
-                    int id =Integer.parseInt(datos[0]); //0
-                    String fechaNacimiento = datos[6];//6
+                    int id =Integer.parseInt(datos[0]);
+                    String fechaNacimiento = datos[6];
                     String rol = "ROL.USUARIO"; 
-                    String poblacion = datos[5]; // 5
-                    String nombreUsuario = datos[1]; //1
-                    String contrasenya = datos[4]; //4
-                    String email = datos[3]; // 3
-                    String apellido = datos[2] ; //2
+                    String poblacion = datos[5];
+                    String nombreUsuario = datos[1];
+                    String contrasenya = datos[4];
+                    String email = datos[3];
+                    String apellido = datos[2];
                    
                     return new Usuario(nombreUsuario, apellido, fechaNacimiento, id, email, rol, poblacion, contrasenya);
                 }

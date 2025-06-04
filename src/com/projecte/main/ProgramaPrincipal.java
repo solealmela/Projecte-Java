@@ -42,7 +42,7 @@ public class ProgramaPrincipal {
                             } else {
                                 menuUsuario.mostrarMenu();
                                 opcion = sc.nextInt();
-                            switch (opcion) { //sub menu
+                            switch (opcion) { //submenu
                                 case 1, 2, 3 -> {
                                 usuario.listar(opcion);}
                                 case 4 ->{ menuInicio.mostrarMenu();
