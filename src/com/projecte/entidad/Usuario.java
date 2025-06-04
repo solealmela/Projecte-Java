@@ -71,69 +71,55 @@ public class Usuario extends Gestionable {
         this.contrasenya = contrasenya;
     }
 
-    public void listar(int rutaFicheroPeliculas ) {
+    public void listar(int rutaFicheroPeliculas) {
         String rutaArchivo = null;
-        String descripcion = null;
-        
-        System.out.println("cosa");
-        //int rutaFicheroPeliculas = scanner.nextInt();
-    
+      
         switch (rutaFicheroPeliculas) {
             case 1 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/actorDades.txt";
-                descripcion = "actor.dades";
+                rutaArchivo = "src/com/projecte/datos/actor.dades"; 
             }
             case 2 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/PeliculasDades.txt";
-                descripcion = "pelicula.dades";
+                rutaArchivo = "src/com/projecte/datos/Peliculas.dades";
             }
             case 3 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/directorDades.txt";
-                descripcion = "director.dades";
-            }
-            case 4 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/actorDades.txt";
-                descripcion = "actor.dades";
-            }
-            case 5 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/PeliculasDades.txt";
-                descripcion = "pelicula.dades";
-            }
-            case 6 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/directorDades.txt";
-                descripcion = "director.dades";
-            }
-            default -> {
+                rutaArchivo = "src/com/projecte/datos/director.dades";
+            } default -> {
                 System.out.println("Ruta inválida.");
                 return;
             }
         }
     
-        System.out.println("Comprobando archivos en: " + descripcion);
+        System.out.println("Comprobando archivos en: " + rutaArchivo.substring(23));
     
         try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = bf.readLine()) != null) {
-                File archivo = new File(linea);
-                if (archivo.exists()) {
-                    System.out.println("Existe: " + linea);
+                String[] partes = linea.split(":");
+                if (partes.length >= 3) {
+                    String id = partes[0];
+                    String nombre = partes[1];
+                    String apellido = partes[2];
+                    System.out.println("ID: " + id + ", Nombre: " + nombre + ", Apellido: " + apellido);
                 } else {
-                    System.out.println("No existe: " + linea);
+                    System.out.println("Línea malformada: " + linea);
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error al leer el fichero: " + e.getMessage());
-        }
-          System.out.println("deseas agregar algun archivo S/N");
-        String opcion = scanner.nextLine();
-        if (opcion.equalsIgnoreCase("s")) {
-             agregarEntidades(rutaFicheroPeliculas, null, opcion); //obtengo la lista del fichero que está viendo y su opcion
-        }else if (opcion.equalsIgnoreCase("n")) {
-            return;
-        }else{
-            System.out.println("Dato incorrecto"); //meterlo dentro de un while
-        }
-       
+        System.out.println("Error al leer el fichero: " + e.getMessage());
+    }
+        String opcion;
+        do {
+            System.out.println("¿Deseas agregar algún dato? (S/N)");
+            opcion = scanner.nextLine().trim();
+            
+            if (opcion.equalsIgnoreCase("s")) {
+                agregarEntidades(rutaFicheroPeliculas, this, opcion);
+            } else if (!opcion.equalsIgnoreCase("n")) {
+                System.out.println("Dato incorrecto. Inténtalo de nuevo.");
+            }
+        } while (!opcion.equalsIgnoreCase("s") && !opcion.equalsIgnoreCase("n"));
+
+            
     }//fin listar
 
     public void agregarEntidades(int rutaFicheroPeliculas,Usuario usuario, String opcion){
@@ -143,11 +129,11 @@ public class Usuario extends Gestionable {
         while (!opcion.equalsIgnoreCase("n")) { //bucle para añadir 
                 
             switch (rutaFicheroPeliculas) {
-                case 1 -> {archivoSalida = "Projecte-Java/src/com/projecte/datos/actor.dades";
+                case 1 -> {archivoSalida = "src/com/projecte/datos/actor.dades";
                 nombreArchivo = "archivoActores.llista"; } //estos son los nombres de los archivos en las carpetas de los usuarios
-                case 2 -> {archivoSalida = "Projecte-Java/src/com/projecte/datos/peliculas.dades";
+                case 2 -> {archivoSalida = "src/com/projecte/datos/peliculas.dades";
                 nombreArchivo = "archivoPeliculas.llista";}
-                case 3 -> {archivoSalida = "Projecte-Java/src/com/projecte/datos/director.dades";
+                case 3 -> {archivoSalida = "src/com/projecte/datos/director.dades";
                 nombreArchivo = "archivoDirectores.llista";}
                 case 4 -> {archivoSalida = "Regresando"; 
                 return;}
@@ -156,7 +142,7 @@ public class Usuario extends Gestionable {
                     return;
                 }
             }
-            String rutaCarpetaUsuario = "Projecte-Java/src/com/projecte/usuarios/" + usuario.getId() + nombreUsuario; //ruta carpeta + la carpeta usuario         
+            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + usuario.getId() + nombreUsuario+"/"; //ruta carpeta + la carpeta usuario         
             File carpetaUsuario = new File(rutaCarpetaUsuario);
 
             //verificamos que existe la carpeta
