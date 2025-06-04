@@ -136,8 +136,8 @@ public class Usuario extends Gestionable {
                     return;
                 }
             }
+            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId()) + usuario.getNombre()+"/"; //ruta carpeta + la carpeta usuario         
 
-            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId()-1) + usuario.getNombre()+"/"; //ruta carpeta + la carpeta usuario         
             File carpetaUsuario = new File(rutaCarpetaUsuario);
 
             //verificamos que existe la carpeta
@@ -148,23 +148,45 @@ public class Usuario extends Gestionable {
 
             String archivoDestino = rutaCarpetaUsuario + "/" + nombreArchivo; // junto la carpeta con el nombre del archivo
 
+            System.out.println("Introduce el ID de la entidad que deseas copiar:");
+            String idEntidadBuscada = scanner.nextLine();
+
+             boolean encontrada = false;
+
             try (
                 BufferedReader br = new BufferedReader(new FileReader(archivoSalida));
-                BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino))
+                BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino, true))
                 ) {
                 String linea;
                 while ((linea = br.readLine()) != null) {
-                    System.out.println("linea "+ linea);
-                    bw.write(linea);
-                    bw.newLine(); //leer la linea y crear una nueva
+                    String[] partes = linea.split(":");
+                    if (partes.length > 0 && partes[0].equals(idEntidadBuscada)) {
+                        bw.write(linea);
+                        bw.newLine();
+                        System.out.println("Línea copiada: " + linea);
+
+                        // Mostrar cada dato individualmente
+                        for (int i = 0; i < partes.length; i++) {
+                            System.out.println("Dato " + i + ": " + partes[i]);
+                        }
+
+                        encontrada = true;
+                        break; // solo una coincidencia
+                    }
                 }
-                System.out.println("Datos copiados correctamente a: "+ archivoDestino);
+                if (!encontrada) {
+                    System.out.println("No se encontró ninguna entidad con ID: " + idEntidadBuscada);
+                } else {
+                    System.out.println("Entidad copiada correctamente a: " + archivoDestino);
+
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
             System.out.println("deseas agregar otro? S/N");
             opcion = scanner.nextLine();
+            
 
         }
 

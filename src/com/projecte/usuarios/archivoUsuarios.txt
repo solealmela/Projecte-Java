@@ -1,2 +1,4 @@
-0:administrador:admin:admin@admin.com:admin123:administrador:11-11-11111:an:an:an@gmail.es:123:xab:12-05-1998
-3:an:an:admin@admin.com:123:administrador:11-11-11111:an:an:an@gmail.es:123:xab:12-05-1998
+<<<<<<< HEAD
+0:administrador:admin:admin@admin.com:admin123:administrador:11-11-1111
+1:an:gui:an@gmail.com:123:xativa:04-10-2005
+
