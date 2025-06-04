@@ -1,7 +1,6 @@
 package com.projecte.acceso;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ import com.projecte.entidad.Usuario;
 public class Login {
 
     private String nombreUsuario;
-    private String idUsuario; // nueva variable
+    private String idUsuario;
 
     public String getIdUsuario() {
         return idUsuario;
