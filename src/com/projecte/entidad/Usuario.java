@@ -72,17 +72,17 @@ public class Usuario extends Gestionable {
     }
 
     public void listar(int rutaFicheroPeliculas) {
-        String rutaArchivo = null;
+        String rutaArchivo = "src/com/projecte/datos/";
       
         switch (rutaFicheroPeliculas) {
             case 1 -> {
-                rutaArchivo = "src/com/projecte/datos/actor.dades"; 
+                rutaArchivo += "actor.dades"; 
             }
             case 2 -> {
-                rutaArchivo = "src/com/projecte/datos/Peliculas.dades";
+                rutaArchivo += "Peliculas.dades";
             }
             case 3 -> {
-                rutaArchivo = "src/com/projecte/datos/director.dades";
+                rutaArchivo += "director.dades";
             } default -> {
                 System.out.println("Ruta inválida.");
                 return;
