@@ -90,6 +90,7 @@ public class Usuario extends Gestionable {
         }
     
         System.out.println("Comprobando archivos en: " + rutaArchivo.substring(23));
+        System.out.println("Comprobando archivos en: " + rutaArchivo.substring(23));
     
         try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
@@ -100,11 +101,33 @@ public class Usuario extends Gestionable {
                     String nombre = partes[1];
                     String apellido = partes[2];
                     System.out.println("ID: " + id + ", Nombre: " + nombre + ", Apellido: " + apellido);
+                String[] partes = linea.split(":");
+                if (partes.length >= 3) {
+                    String id = partes[0];
+                    String nombre = partes[1];
+                    String apellido = partes[2];
+                    System.out.println("ID: " + id + ", Nombre: " + nombre + ", Apellido: " + apellido);
                 } else {
+                    System.out.println("Línea malformada: " + linea);
                     System.out.println("Línea malformada: " + linea);
                 }
             }
         } catch (IOException e) {
+        System.out.println("Error al leer el fichero: " + e.getMessage());
+    }
+        String opcion;
+        do {
+            System.out.println("¿Deseas agregar algún dato? (S/N)");
+            opcion = scanner.nextLine().trim();
+            
+            if (opcion.equalsIgnoreCase("s")) {
+                agregarEntidades(rutaFicheroPeliculas, this, opcion);
+            } else if (!opcion.equalsIgnoreCase("n")) {
+                System.out.println("Dato incorrecto. Inténtalo de nuevo.");
+            }
+        } while (!opcion.equalsIgnoreCase("s") && !opcion.equalsIgnoreCase("n"));
+
+            
         System.out.println("Error al leer el fichero: " + e.getMessage());
     }
         String opcion;
@@ -130,9 +153,12 @@ public class Usuario extends Gestionable {
                 
             switch (rutaFicheroPeliculas) {
                 case 1 -> {archivoSalida = "src/com/projecte/datos/actor.dades";
+                case 1 -> {archivoSalida = "src/com/projecte/datos/actor.dades";
                 nombreArchivo = "archivoActores.llista"; } //estos son los nombres de los archivos en las carpetas de los usuarios
                 case 2 -> {archivoSalida = "src/com/projecte/datos/peliculas.dades";
+                case 2 -> {archivoSalida = "src/com/projecte/datos/peliculas.dades";
                 nombreArchivo = "archivoPeliculas.llista";}
+                case 3 -> {archivoSalida = "src/com/projecte/datos/director.dades";
                 case 3 -> {archivoSalida = "src/com/projecte/datos/director.dades";
                 nombreArchivo = "archivoDirectores.llista";}
                 case 4 -> {archivoSalida = "Regresando"; 
@@ -142,6 +168,7 @@ public class Usuario extends Gestionable {
                     return;
                 }
             }
+            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + usuario.getId() + nombreUsuario+"/"; //ruta carpeta + la carpeta usuario         
             String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + usuario.getId() + nombreUsuario+"/"; //ruta carpeta + la carpeta usuario         
             File carpetaUsuario = new File(rutaCarpetaUsuario);
 
