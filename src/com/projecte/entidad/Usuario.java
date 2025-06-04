@@ -142,7 +142,8 @@ public class Usuario extends Gestionable {
                     return;
                 }
             }
-            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + usuario.getId() + nombreUsuario+"/"; //ruta carpeta + la carpeta usuario         
+
+            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId()-1) + usuario.getNombre()+"/"; //ruta carpeta + la carpeta usuario         
             File carpetaUsuario = new File(rutaCarpetaUsuario);
 
             //verificamos que existe la carpeta
