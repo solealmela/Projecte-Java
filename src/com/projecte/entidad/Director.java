@@ -1,9 +1,5 @@
 package com.projecte.entidad;
-
-import java.util.Iterator;
-
-public class Director extends Gestionable implements Comparable, Iterable {
-
+public class Director extends Gestionable implements Comparable {  
     static private int id;
     static private String archivo = "src/com/projecte/usuarios/" + id + "/archivoDirectores.llista";
 
@@ -42,23 +38,4 @@ public class Director extends Gestionable implements Comparable, Iterable {
         
         throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
     }
-
-    @Override
-    public boolean hasNext() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'hasNext'");
-    }
-
-    @Override
-    public Object next() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'next'");
-    }
-
-    @Override
-    public Iterator iterator() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'iterator'");
-    }
-
 }
