@@ -7,14 +7,16 @@ import com.projecte.acceso.*;
 import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
-
+    private static Menu menuAdministrador = new Menu("menu Administrador", new String[] {"Añadir Directores","Añadir Actores","Añadir Peliculas","Eliminar Usuarios","Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
-    private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
+    private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
-        
+        boolean correctoInicioSesion = false;     
+        String nombreUsuario = "";
+
         do {
             try {
                 menuInicio.mostrarMenu();
@@ -24,16 +26,45 @@ public class ProgramaPrincipal {
                 sc.nextLine();
                 opcion = -1;
             }
-
             switch (opcion) {
                 case 1 -> new Registro().obtenerDatos();
-                case 2 -> new Login().login();
+                case 2 -> {
+                    Login login = new Login();
+                    correctoInicioSesion = login.login();
+                    nombreUsuario = login.getNombreUsuario();
+                    if (correctoInicioSesion) {
+                        try {
+                            Usuario usuario = login.datosUsuario(login.getIdUsuario()); // datos del usuario logeado
+
+                            if (nombreUsuario.equals("administrador")) {
+                                menuAdministrador.mostrarMenu();
+                            } else {
+                                menuUsuario.mostrarMenu();
+                                opcion = sc.nextInt();
+                            switch (opcion) { //sub menu
+                                case 1, 2, 3 -> {
+                                usuario.listar(opcion);}
+                                case 4 ->{ menuInicio.mostrarMenu(); // verificar esto despues
+                                }
+                                default -> {
+                                    // x cosa
+                                }
+                                    
+                            }
+                        }
+
+                        } catch (Exception e) {
+                            System.out.println("No se ha podido loguear el usuario");
+                        }
+                       
+                    }
+                }
                 case 3 -> System.out.println("Saliendo...\n");  
                 default -> {
                     if (opcion != -1) System.out.println("Opción incorrecta\n");
                 }
             }
-        } while (opcion != 3);
+        } while (opcion != 3 && correctoInicioSesion == false);
 
     } //fin main
 }

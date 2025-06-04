@@ -6,6 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
+import com.projecte.entidad.Usuario;
+
 public class Registro {
 
     private Scanner sc = new Scanner(System.in);
@@ -164,6 +166,12 @@ public class Registro {
     //Método para validar que no se introduzca ':'
     public boolean validarSinDosPuntos(String entrada) {
         return !entrada.contains(":");
+    }
+
+
+    public void datosUsuario(Usuario usuario) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'datosUsuario'");
     }
 
 }
