@@ -161,7 +161,7 @@ public class Usuario extends Gestionable {
 
             try (
                 BufferedReader br = new BufferedReader(new FileReader(archivoSalida));
-                BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino))
+                BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino, true))
                 ) {
                 String linea;
                 while ((linea = br.readLine()) != null) {
