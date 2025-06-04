@@ -71,23 +71,36 @@ public class Usuario extends Gestionable {
         this.contrasenya = contrasenya;
     }
 
-    public void listar() {
+    public void listar(int rutaFicheroPeliculas ) {
         String rutaArchivo = null;
         String descripcion = null;
         
-        int rutaFicheroPeliculas = scanner.nextInt();
+        System.out.println("cosa");
+        //int rutaFicheroPeliculas = scanner.nextInt();
     
         switch (rutaFicheroPeliculas) {
             case 1 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/actor.dades";
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/actorDades.txt";
                 descripcion = "actor.dades";
             }
             case 2 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/pelicula.dades";
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/PeliculasDades.txt";
                 descripcion = "pelicula.dades";
             }
             case 3 -> {
-                rutaArchivo = "Projecte-Java/src/com/projecte/datos/director.dades";
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/directorDades.txt";
+                descripcion = "director.dades";
+            }
+            case 4 -> {
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/actorDades.txt";
+                descripcion = "actor.dades";
+            }
+            case 5 -> {
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/PeliculasDades.txt";
+                descripcion = "pelicula.dades";
+            }
+            case 6 -> {
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/directorDades.txt";
                 descripcion = "director.dades";
             }
             default -> {
@@ -143,7 +156,6 @@ public class Usuario extends Gestionable {
                     return;
                 }
             }
-            String[] separaCorreo = usuario.getEmail().split("@");//separando los datos
             String rutaCarpetaUsuario = "Projecte-Java/src/com/projecte/usuarios/" + usuario.getId() + nombreUsuario; //ruta carpeta + la carpeta usuario         
             File carpetaUsuario = new File(rutaCarpetaUsuario);
 

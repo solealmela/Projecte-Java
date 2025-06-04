@@ -43,7 +43,7 @@ public class ProgramaPrincipal {
                                 opcion = sc.nextInt();
                             switch (opcion) { //sub menu
                                 case 1 -> {menuUsuario.mostrarMenu();
-                                    usuario.listar();}
+                                    usuario.listar(opcion);}
                                 default -> {
                                     // x cosa
                                 }
