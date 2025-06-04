@@ -57,54 +57,46 @@ public class Usuario extends Gestionable {
         this.contrasenya = contrasenya;
     }
 
-    public void listar(int reutaFicheroPeliculas){
-        if (reutaFicheroPeliculas == 1) {
-            try (BufferedReader bf = new BufferedReader(new FileReader("Projecte-Java/src/com/projecte/datos/actor.dades"))) {
-                String linea;
-                System.out.println("Comprobando archivos en: ../datos/actor.dades");
-                while ((linea = bf.readLine()) != null){
-                    File archivo = new File(linea);
-                    if (archivo.exists()) {
-                        System.out.println("existe "+ linea);
-                    }else{
-                        System.out.println("No existe "+ linea);
-                    }
-                } //fin while
-            } catch (IOException e) {
-                System.out.println("Error al leer el fichero "+ e.getMessage());
+    public void listar(int rutaFicheroPeliculas) {
+        String rutaArchivo = null;
+        String descripcion = null;
+    
+        switch (rutaFicheroPeliculas) {
+            case 1 -> {
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/actor.dades";
+                descripcion = "actor.dades";
             }
-        }else if (reutaFicheroPeliculas == 2) {
-            try (BufferedReader bf = new BufferedReader(new FileReader("src/com/datos/director.dades"))) {
-                String linea2;
-                System.out.println("Comprobando archivos en: ../datos/actor.dades");
-                while ((linea2 = bf.readLine()) != null){
-                    File archivo = new File(linea2);
-                    if (archivo.exists()) {
-                        System.out.println("existe "+ linea2);
-                    }else{
-                        System.out.println("No existe "+ linea2);
-                    }
-                } //fin while
-            } catch (IOException e) {
-                System.out.println("Error al leer el fichero "+ e.getMessage());
+            case 2 -> {
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/pelicula.dades";
+                descripcion = "pelicula.dades";
             }
-        }else if (reutaFicheroPeliculas == 3) {
-            try (BufferedReader bf = new BufferedReader(new FileReader("src/com/datos/director.dades"))) {
-                String linea3;
-                System.out.println("Comprobando archivos en: ../datos/actor.dades");
-                while ((linea3 = bf.readLine()) != null){
-                    File archivo = new File(linea3);
-                    if (archivo.exists()) {
-                        System.out.println("existe "+ linea3);
-                    }else{
-                        System.out.println("No existe "+ linea3);
-                    }
-                } //fin while
-            } catch (IOException e) {
-                System.out.println("Error al leer el fichero "+ e.getMessage());
+            case 3 -> {
+                rutaArchivo = "Projecte-Java/src/com/projecte/datos/director.dades";
+                descripcion = "director.dades";
+            }
+            default -> {
+                System.out.println("Ruta inválida.");
+                return;
             }
         }
+    
+        System.out.println("Comprobando archivos en: " + descripcion);
+    
+        try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = bf.readLine()) != null) {
+                File archivo = new File(linea);
+                if (archivo.exists()) {
+                    System.out.println("Existe: " + linea);
+                } else {
+                    System.out.println("No existe: " + linea);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el fichero: " + e.getMessage());
+        }
     }
+    
 
 @Override
     public String toString() {

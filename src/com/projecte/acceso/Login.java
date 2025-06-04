@@ -10,6 +10,7 @@ public class Login {
     private String nombreUsuario;
 
     public boolean login() {
+
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduce el nombre de usuario: ");
         String usuario = sc.nextLine();
@@ -50,8 +51,7 @@ public class Login {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        return false;
+                return accesoConcedido;
     }
 
     public String getNombreUsuario() {
