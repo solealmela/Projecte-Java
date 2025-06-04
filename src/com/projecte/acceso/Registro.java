@@ -14,6 +14,7 @@ public class Registro {
     private static final String ARCHIVO = "src/com/projecte/usuarios/archivoUsuarios.txt";
 
     public void obtenerDatos() {
+        
         int id = 0;
 
         //Obtenemos el id a partir de las lineas del archivo 'archivoUsuarios.txt'

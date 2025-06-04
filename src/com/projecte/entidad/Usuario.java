@@ -14,7 +14,7 @@ public class Usuario extends Gestionable {
     private String poblacion;
     private String nombreUsuario;
     private String contrasenya;
-    private String email; // nueva variable para obtener el correo del usuario
+    private String email;
     private Scanner scanner = new Scanner(System.in); 
 
     public Usuario(String nombre, String apellido, String fechaNacimiento, int id, String poblacion, String nombreUsuario, String contrasenya,String email) {
@@ -55,14 +55,6 @@ public class Usuario extends Gestionable {
         this.poblacion = poblacion;
     }
 
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
     public String getContrasenya() {
         return contrasenya;
     }
@@ -72,24 +64,24 @@ public class Usuario extends Gestionable {
     }
 
     public void listar(int rutaFicheroPeliculas) {
-        String rutaArchivo = null;
+        String rutaArchivo = "src/com/projecte/datos/";
       
         switch (rutaFicheroPeliculas) {
             case 1 -> {
-                rutaArchivo = "src/com/projecte/datos/actor.dades"; 
+                rutaArchivo += "actor.dades"; 
             }
             case 2 -> {
-                rutaArchivo = "src/com/projecte/datos/Peliculas.dades";
+                rutaArchivo += "peliculas.dades";
             }
             case 3 -> {
-                rutaArchivo = "src/com/projecte/datos/director.dades";
+                rutaArchivo += "director.dades";
             } default -> {
                 System.out.println("Ruta inválida.");
                 return;
             }
         }
     
-        System.out.println("Comprobando archivos en: " + rutaArchivo.substring(23));
+        System.out.println("Comprobando archivos de"+this.getNombre()+ " en:" + rutaArchivo.substring(23));
     
         try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
@@ -142,7 +134,8 @@ public class Usuario extends Gestionable {
                     return;
                 }
             }
-            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + usuario.getId() + nombreUsuario+"/"; //ruta carpeta + la carpeta usuario         
+
+            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId()-1) + usuario.getNombre()+"/"; //ruta carpeta + la carpeta usuario         
             File carpetaUsuario = new File(rutaCarpetaUsuario);
 
             //verificamos que existe la carpeta
@@ -179,6 +172,6 @@ public class Usuario extends Gestionable {
 @Override
     public String toString() {
         return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario
-                + "]";
+        + "]";
     }
 }

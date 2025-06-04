@@ -7,6 +7,7 @@ import com.projecte.acceso.*;
 import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
+
     private static Menu menuAdministrador = new Menu("menu Administrador", new String[] {"Añadir Directores","Añadir Actores","Añadir Peliculas","Eliminar Usuarios","Ver mi lista de Peliculas","Ver mi lista de Actores","Ver mi lista de Directores", "Agregar Peliculas","Agregar Actores","Agregar Directores","Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
     private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
@@ -34,27 +35,26 @@ public class ProgramaPrincipal {
                     nombreUsuario = login.getNombreUsuario();
                     if (correctoInicioSesion) {
                         try {
-                            Usuario usuario = login.datosUsuario(login.getIdUsuario()); // datos del usuario logeado
+                            Usuario usuario = login.datosUsuario(login.getIdUsuario());
 
                             if (nombreUsuario.equals("administrador")) {
                                 menuAdministrador.mostrarMenu();
                             } else {
                                 menuUsuario.mostrarMenu();
                                 opcion = sc.nextInt();
-                            switch (opcion) { //sub menu
+                            switch (opcion) { //submenu
                                 case 1, 2, 3 -> {
                                 usuario.listar(opcion);}
-                                case 4 ->{ menuInicio.mostrarMenu(); // verificar esto despues
+                                case 4 ->{ menuInicio.mostrarMenu();
                                 }
                                 default -> {
                                     // x cosa
                                 }
-                                    
                             }
                         }
 
                         } catch (Exception e) {
-                            System.out.println("No se ha podido loguear el usuario");
+                            // TODO: handle exception
                         }
                        
                     }
@@ -64,7 +64,11 @@ public class ProgramaPrincipal {
                     if (opcion != -1) System.out.println("Opción incorrecta\n");
                 }
             }
-        } while (opcion != 3 && correctoInicioSesion == false);
+        } while (opcion != 3 && !correctoInicioSesion);
+
+        sc.close();
+
+
 
     } //fin main
 }

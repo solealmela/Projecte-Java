@@ -1,5 +1,1 @@
 0:administrador:admin:admin@admin.com:admin123:administrador:11-11-1111
-1:ruben:rub:ruben@gmail.com:si:sada:15-11-48452:antuan:guillen:antuan@124.com:123:valencia:04-10-0001
-
-3:antuan:guillen:an@gamil:123:gon:04-10-2975
-4:an:gui:an@c:123:valencia:01-10-5056
