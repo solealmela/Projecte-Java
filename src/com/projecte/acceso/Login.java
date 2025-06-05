@@ -15,6 +15,10 @@ public class Login {
     public String getIdUsuario() {
         return idUsuario;
     }
+    
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
 
     public boolean login() {
         Scanner sc = new Scanner(System.in);
@@ -69,22 +73,18 @@ public class Login {
                 if (datos.length >= 5 && datos[0].equals(idUsuario)) {
                     int id =Integer.parseInt(datos[0]);
                     String fechaNacimiento = datos[6];
-                    String rol = "ROL.USUARIO"; 
+                    String rol = "ROL_USUARIO"; 
                     String poblacion = datos[5];
                     String nombreUsuario = datos[1];
                     String contrasenya = datos[4];
                     String email = datos[3];
                     String apellido = datos[2];
                    
-                    return new Usuario(nombreUsuario, apellido, fechaNacimiento, id, email, rol, poblacion, contrasenya);
+                    return new Usuario(id, nombreUsuario, apellido, fechaNacimiento, nombreUsuario, email, contrasenya, poblacion, rol);
                 }
             }// fin while
 
         }
         return null;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
     }
 }

@@ -27,7 +27,7 @@ public class Menu {
     }
 
     public void mostrarMenu() {
-        System.out.println("=== " + titulo + " ===");
+        System.out.println("\n=== " + titulo + " ===");
         for (int i = 0; i < opciones.length; i++) {
             System.out.println((i + 1) + ". " + opciones[i]);
         }
