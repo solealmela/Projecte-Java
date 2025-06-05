@@ -47,13 +47,13 @@ public class ProgramaPrincipal {
                                     case 4 ->{ menuInicio.mostrarMenu();
                                     }
                                     default -> {
-                                        // x cosa
+                                        System.out.println("Opción incorrecta");
                                     }
                                 }
                         }
 
                         } catch (Exception e) {
-                            // TODO: handle exception
+                            
                         }
                        
                     }
