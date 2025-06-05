@@ -1,9 +1,11 @@
 package com.projecte.main; //Indica donde estás
 import java.util.Comparator; //Importo la clase comparator para comparar los distintos elementos
 import java.util.InputMismatchException; //Importo el "Aviso de error" para que si se hace un catch con esa condicion la recoja
+import java.util.List;
 import java.util.Scanner;
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
+import com.projecte.entidad.Pelicula;
 import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
@@ -91,8 +93,13 @@ public class ProgramaPrincipal {
                                                     menuEliminarEntidad.mostrarMenu();
                                                     try {
                                                         opcionEliminar = sc.nextInt();
-                                                        
-                                                        usuario.eliminarEntidadGeneral(opcionEliminar);
+                                                        sc.nextLine();
+
+                                                        switch (opcionEliminar) {
+                                                            case 1, 2, 3 -> usuario.eliminarEntidadGeneral(opcionEliminar);
+                                                            case 4 -> System.out.println("Volviendo al menú anterior...");
+                                                            default -> System.out.println("Opción inválida. Inténtalo de nuevo.");
+                                                        }
                                                     } catch (InputMismatchException e) {
                                                         System.out.println("Entrada inválida.");
                                                         sc.nextLine();
@@ -122,7 +129,24 @@ public class ProgramaPrincipal {
 
                                         switch (opcionUsuario) {
                                             case 1, 2, 3 -> usuario.listar(opcionUsuario);
-                                            case 4 -> { ordenarPeliculas.mostrarMenu();
+                                            case 4 -> { 
+                                                ordenarPeliculas.mostrarMenu();
+                                                int opcionOrden = sc.nextInt();
+                                                sc.nextLine();
+
+                                                List<Pelicula> peliculas = usuario.leerPeliculasDesdeArchivo();
+
+                                                if (peliculas.isEmpty()) {
+                                                    System.out.println("No hay películas registradas.");
+                                                    return;
+                                                }
+
+                                                switch (opcionOrden) {
+                                                    case 1 -> usuario.mostrarPeliculasOrdenadasPorTitulo(peliculas);
+                                                    case 2 -> usuario.mostrarPeliculasOrdenadasPorDuracion(peliculas);
+                                                    case 3 -> usuario.mostrarPeliculasOrdenadasPorAnyo(peliculas);
+                                                    default -> System.out.println("Opción inválida.");
+                                                }
                                             }
                                             case 5 -> {
                                                 System.out.println("Cerrando sesión...\n");
