@@ -358,6 +358,180 @@ public class Usuario extends Persona {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
     }
+
+    public void eliminarEntidadGeneral(int tipoEntidad) {
+        String archivo = switch (tipoEntidad) {
+            case 1 -> "src/com/projecte/datos/actor.dades";
+            case 2 -> "src/com/projecte/datos/peliculas.dades";
+            case 3 -> "src/com/projecte/datos/director.dades";
+            default -> null;
+        };
+
+        if (archivo == null) {
+            System.out.println("Tipo de entidad no válido.");
+            return;
+        }
+
+        listar(tipoEntidad); // Muestra lista actual
+        System.out.print("Introduce el ID de la entidad a eliminar (o escribe 'cancelar'): ");
+        String idEliminar = scanner.nextLine().trim();
+
+        if (idEliminar.equalsIgnoreCase("cancelar")) {
+            System.out.println("Operación cancelada.");
+            return;
+        }
+
+        List<String> lineasActualizadas = new ArrayList<>();
+        boolean eliminado = false;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (!linea.startsWith(idEliminar + ":")) {
+                    lineasActualizadas.add(linea);
+                } else {
+                    eliminado = true;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+            return;
+        }
+
+        if (eliminado) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo))) {
+                for (String l : lineasActualizadas) {
+                    bw.write(l);
+                    bw.newLine();
+                }
+                System.out.println("Entidad eliminada correctamente.");
+            } catch (IOException e) {
+                System.out.println("Error al escribir el archivo: " + e.getMessage());
+            }
+        } else {
+            System.out.println("No se encontró ninguna entidad con ese ID.");
+        }
+    }
+
+    public void eliminarEntidadPersonal(int tipoEntidad) {
+        String nombreArchivo = switch (tipoEntidad) {
+            case 1 -> "archivoActores.llista";
+            case 2 -> "archivoPeliculas.llista";
+            case 3 -> "archivoDirectores.llista";
+            default -> null;
+        };
+
+        if (nombreArchivo == null) {
+            System.out.println("Tipo de entidad no válido.");
+            return;
+        }
+
+        String carpetaUsuario = "src/com/projecte/usuarios/" + this.getId() + this.getEmail().split("@")[0] + "/";
+        String archivoUsuario = carpetaUsuario + nombreArchivo;
+
+        File archivo = new File(archivoUsuario);
+        if (!archivo.exists()) {
+            System.out.println("El archivo no existe.");
+            return;
+        }
+
+        List<String> lineas = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
+                lineas.add(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo del usuario.");
+            return;
+        }
+
+        System.out.print("Introduce el ID de la entidad que deseas eliminar (o escribe 'cancelar'): ");
+        String idEliminar = scanner.nextLine().trim();
+        if (idEliminar.equalsIgnoreCase("cancelar")) {
+            System.out.println("Operación cancelada.");
+            return;
+        }
+
+        boolean eliminado = false;
+        List<String> actualizadas = new ArrayList<>();
+        for (String l : lineas) {
+            if (!l.startsWith(idEliminar + ":")) {
+                actualizadas.add(l);
+            } else {
+                eliminado = true;
+            }
+        }
+
+        if (eliminado) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoUsuario))) {
+                for (String l : actualizadas) {
+                    bw.write(l);
+                    bw.newLine();
+                }
+                System.out.println("Entidad eliminada de tu lista personal.");
+            } catch (IOException e) {
+                System.out.println("Error al escribir el archivo.");
+            }
+        } else {
+            System.out.println("No se encontró ninguna entidad con ese ID.");
+        }
+    }
+
+    public void limpiarListasPersonales() {
+        String baseRuta = "src/com/projecte/usuarios/" + this.getId() + this.getEmail().split("@")[0] + "/";
+        String[] archivos = {
+            "archivoActores.llista",
+            "archivoPeliculas.llista",
+            "archivoDirectores.llista"
+        };
+
+        String[] archivosGenerales = {
+            "src/com/projecte/datos/actor.dades",
+            "src/com/projecte/datos/peliculas.dades",
+            "src/com/projecte/datos/director.dades"
+        };
+
+        for (int i = 0; i < archivos.length; i++) {
+            String archivoUsuario = baseRuta + archivos[i];
+            String archivoGeneral = archivosGenerales[i];
+
+            List<String> validas = new ArrayList<>();
+            List<String> idsGenerales = new ArrayList<>();
+
+            try (BufferedReader br = new BufferedReader(new FileReader(archivoGeneral))) {
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    String id = linea.split(":")[0];
+                    idsGenerales.add(id);
+                }
+            } catch (IOException e) {
+                continue; // Si no puede leer el general, va al siguiente
+            }
+
+            try (BufferedReader br = new BufferedReader(new FileReader(archivoUsuario))) {
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    String id = linea.split(":")[0];
+                    if (idsGenerales.contains(id)) {
+                        validas.add(linea);
+                    }
+                }
+            } catch (IOException e) {
+                continue;
+            }
+
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoUsuario))) {
+                for (String v : validas) {
+                    bw.write(v);
+                    bw.newLine();
+                }
+            } catch (IOException e) {
+                System.out.println("Error al limpiar archivo personal: " + archivos[i]);
+            }
+        }
+    }
     
 
     public void eliminarUsuario(String nombreCarpetaUsuario) {
