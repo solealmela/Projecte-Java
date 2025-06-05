@@ -83,8 +83,13 @@ public class ProgramaPrincipal {
                                                     menuEliminarEntidad.mostrarMenu();
                                                     try {
                                                         opcionEliminar = sc.nextInt();
-                                                        
-                                                        usuario.eliminarEntidadGeneral(opcionEliminar);
+                                                        sc.nextLine();
+
+                                                        switch (opcionEliminar) {
+                                                            case 1, 2, 3 -> usuario.eliminarEntidadGeneral(opcionEliminar);
+                                                            case 4 -> System.out.println("Volviendo al menú anterior...");
+                                                            default -> System.out.println("Opción inválida. Inténtalo de nuevo.");
+                                                        }
                                                     } catch (InputMismatchException e) {
                                                         System.out.println("Entrada inválida.");
                                                         sc.nextLine();
