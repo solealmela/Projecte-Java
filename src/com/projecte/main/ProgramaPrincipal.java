@@ -1,10 +1,11 @@
 package com.projecte.main;
-import java.util.Comparator;
 
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
+import com.projecte.entidad.Pelicula;
 import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
@@ -125,7 +126,24 @@ public class ProgramaPrincipal {
 
                                         switch (opcionUsuario) {
                                             case 1, 2, 3 -> usuario.listar(opcionUsuario);
-                                            case 4 -> { ordenarPeliculas.mostrarMenu();
+                                            case 4 -> { 
+                                                ordenarPeliculas.mostrarMenu();
+                                                int opcionOrden = sc.nextInt();
+                                                sc.nextLine();
+
+                                                List<Pelicula> peliculas = usuario.leerPeliculasDesdeArchivo();
+
+                                                if (peliculas.isEmpty()) {
+                                                    System.out.println("No hay películas registradas.");
+                                                    return;
+                                                }
+
+                                                switch (opcionOrden) {
+                                                    case 1 -> usuario.mostrarPeliculasOrdenadasPorTitulo(peliculas);
+                                                    case 2 -> usuario.mostrarPeliculasOrdenadasPorDuracion(peliculas);
+                                                    case 3 -> usuario.mostrarPeliculasOrdenadasPorAnyo(peliculas);
+                                                    default -> System.out.println("Opción inválida.");
+                                                }
                                             }
                                             case 5 -> {
                                                 System.out.println("Cerrando sesión...\n");
