@@ -15,6 +15,10 @@ public class Login {
     public String getIdUsuario() {
         return idUsuario;
     }
+    
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
 
     public boolean login() {
         Scanner sc = new Scanner(System.in);
@@ -82,9 +86,5 @@ public class Login {
 
         }
         return null;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
     }
 }

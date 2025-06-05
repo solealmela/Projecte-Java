@@ -42,15 +42,15 @@ public class ProgramaPrincipal {
                             } else {
                                 menuUsuario.mostrarMenu();
                                 opcion = sc.nextInt();
-                            switch (opcion) { //submenu
-                                case 1, 2, 3 -> {
-                                usuario.listar(opcion);}
-                                case 4 ->{ menuInicio.mostrarMenu();
+                                switch (opcion) { //submenu
+                                    case 1, 2, 3 -> {
+                                    usuario.listar(opcion);}
+                                    case 4 ->{ menuInicio.mostrarMenu();
+                                    }
+                                    default -> {
+                                        // x cosa
+                                    }
                                 }
-                                default -> {
-                                    // x cosa
-                                }
-                            }
                         }
 
                         } catch (Exception e) {
