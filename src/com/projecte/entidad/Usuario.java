@@ -142,9 +142,7 @@ public class Usuario extends Gestionable {
                 // Orden natural por título
                 Collections.sort(listaPeliculas);
                 System.out.println("\n--- Películas ordenadas por título ---");
-                for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
-                }
+                listaPeliculas.forEach(p -> System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
 
                 // Ordenar por duración
                 Collections.sort(listaPeliculas, new Comparator<Pelicula>() {
@@ -154,10 +152,8 @@ public class Usuario extends Gestionable {
                     }
                 });
                 System.out.println("\n--- Películas ordenadas por duración ---");
-                for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
-                }
-
+                listaPeliculas.forEach(p -> System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
+                
                 // Ordenar por año y en caso de empate, ordenamos por título
                 Collections.sort(listaPeliculas, new Comparator<Pelicula>() {
                     @Override
@@ -170,9 +166,7 @@ public class Usuario extends Gestionable {
                     }
                 });
                 System.out.println("\n--- Películas ordenadas por año ---");
-                for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
-                }
+                listaPeliculas.forEach(p -> System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
             }
 
             case 3 -> {
