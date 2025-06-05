@@ -78,7 +78,7 @@ public class ProgramaPrincipal {
                                             case 4-> {
                                                 usuario.añadirEntidadGlobal(opcionAdmin);
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Añadir Peliculas");
+                                                System.out.println("Añadir director");
                                             }
                                             case 7-> {
                                                 usuario.eliminarUsuario();

@@ -300,29 +300,59 @@ public class Usuario extends Persona {
         
 
         public void añadirEntidadGlobal(int tipoEntidad) {
-        String archivo = switch (tipoEntidad) {
-            case 1 -> "src/com/projecte/datos/actor.dades";
-            case 2 -> "src/com/projecte/datos/peliculas.dades";
-            case 3 -> "src/com/projecte/datos/director.dades";
-            default -> "Error al añadir";
-        };
-
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
-            System.out.print("Introduce el ID: ");
-            String id = scanner.nextLine();
-            System.out.print("Introduce el nombre: ");
-            String nombre = scanner.nextLine();
-            System.out.print("Introduce el apellido: ");
-            String apellido = scanner.nextLine();
-
-            String nuevaLinea = id + ":" + nombre + ":" + apellido;
-            bw.write(nuevaLinea);
-            bw.newLine();
-            System.out.println("Entidad añadida correctamente.");
-        } catch (IOException e) {
-            System.out.println("Error al escribir en el archivo: " + e.getMessage());
-        }
-    }
+            String archivo = switch (tipoEntidad) {
+                case 5 -> "src/com/projecte/datos/actor.dades";
+                case 6 -> "src/com/projecte/datos/peliculas.dades";
+                case 4 -> "src/com/projecte/datos/director.dades";
+                default -> 
+                    
+                    "Tipo de entidad no válido.";
+                
+            };
+        
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+                System.out.print("Introduce el ID: ");
+                String id = scanner.nextLine();
+        
+                String nuevaLinea = "";
+        
+                switch (tipoEntidad) {
+                    case 5 -> { // Actor
+                        System.out.print("Introduce el nombre: ");
+                        String nombre = scanner.nextLine();
+                        System.out.print("Introduce el apellido: ");
+                        String apellido = scanner.nextLine();
+                        nuevaLinea = id + ":" + nombre + ":" + apellido ;
+                        
+                    }
+                    case 6 -> { // Película
+                        System.out.print("Introduce el título: ");
+                        String titulo = scanner.nextLine();
+                        System.out.print("Introduce la duración (min): ");
+                        String duracion = scanner.nextLine();
+                        System.out.print("Introduce el año: ");
+                        String año = scanner.nextLine();
+                        System.out.print("Introduce el director: ");
+                        String director = scanner.nextLine();
+                        nuevaLinea = id + ":" + titulo + ":" + duracion + ":" + año + ":" + director;
+                    }
+                    case 4 -> { // Director
+                        System.out.print("Introduce el nombre: ");
+                        String nombre = scanner.nextLine();
+                        System.out.print("Introduce el apellido: ");
+                        String apellido = scanner.nextLine();
+                        nuevaLinea = id + ":" + nombre + ":" + apellido;
+                    }
+                }
+        
+                bw.write(nuevaLinea);
+                bw.newLine();
+                System.out.println("Entidad añadida correctamente.");
+        
+            } catch (IOException e) {
+                System.out.println("Error al escribir en el archivo: " + e.getMessage());
+            }
+        }        
 
     public void verListaUsuarios(int tipoEntidad) {
         System.out.println("Dime el ID del usuario:");
