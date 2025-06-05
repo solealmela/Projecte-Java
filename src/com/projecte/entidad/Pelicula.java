@@ -1,10 +1,10 @@
 package com.projecte.entidad;
 
-import java.io.Serializable;
+import com.projecte.utils.Gestionable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pelicula implements Comparable<Pelicula>, Serializable {
+public class Pelicula implements Comparable<Pelicula>, Gestionable {
 
     private static int nextId = 1;
 
@@ -48,8 +48,41 @@ public class Pelicula implements Comparable<Pelicula>, Serializable {
         return duracionMinutos;
     }
 
+    public List<Actor> getActoresDeLaPeli() {
+        return actoresDeLaPeli;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    // compareTo para ordenar por nombre
     @Override
     public int compareTo(Pelicula otraPelicula) {
         return this.nombre.compareToIgnoreCase(otraPelicula.getNombre());
+    }
+
+    // Implementación de la interfaz Gestionable
+    @Override
+    public String getIdentificador() {
+        return "P-" + id;
+    }
+
+    @Override
+    public String resum() {
+        return nombre + " (" + any + "), Dirigida por: " + (director != null ? director.resum() : "Desconocido");
+    }
+
+    @Override
+    public void mostrarDetalls() {
+        System.out.println("ID: " + getIdentificador());
+        System.out.println("Título: " + nombre);
+        System.out.println("Duración: " + duracionMinutos + " minutos");
+        System.out.println("Año: " + any);
+        System.out.println("Director: " + (director != null ? director.resum() : "No asignado"));
+        System.out.println("Actores:");
+        for (Actor actor : actoresDeLaPeli) {
+            System.out.println("- " + actor.resum());
+        }
     }
 }

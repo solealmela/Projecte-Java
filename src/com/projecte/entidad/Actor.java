@@ -1,25 +1,44 @@
 package com.projecte.entidad;
 
-public class Actor extends Gestionable{
+import com.projecte.utils.Gestionable;
 
-    static private int id;
-    static private String archivo = "src/com/projecte/usuarios/"+id+"/archivoActores.llista";
+public class Actor extends Persona implements Gestionable {
 
+    private static int nextId = 1;
+    private int id;
+
+    private static final String archivoBase = "src/com/projecte/usuarios/";
 
     public Actor(String nombre, String apellido, String fechaNacimiento) {
         super(nombre, apellido, fechaNacimiento);
-        id++;
+        this.id = nextId++;
     }
 
-    public void crearActor(){
-
-    }
-        public static int getId() {
+    public int getId() {
         return id;
     }
 
-    public static void setId(int id) {
-        Actor.id = id;
+    public String getArchivoRuta() {
+        return archivoBase + id + "/archivoActores.llista";
+    }
+
+    // Implementación de Gestionable
+    @Override
+    public String getIdentificador() {
+        return "A-" + id;
+    }
+
+    @Override
+    public String resum() {
+        return super.getNombre() + " " + super.getApellido();
+    }
+
+    @Override
+    public void mostrarDetalls() {
+        System.out.println("ID: " + getIdentificador());
+        System.out.println("Nombre: " + super.getNombre());
+        System.out.println("Apellido: " + super.getApellido());
+        System.out.println("Fecha de nacimiento: " + super.getFechaNacimiento());
     }
 
 }
