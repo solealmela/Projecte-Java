@@ -67,14 +67,16 @@ public class ProgramaPrincipal {
                                                 usuario.verListaGlobal(opcionAdmin);
                                             }
                                             case 5 -> {
-                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                usuario.añadirEntidadGlobal(opcionAdmin);
                                                 
                                             }
                                             case 6 -> {
+                                                usuario.añadirEntidadGlobal(opcionAdmin);
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Añadir Peliculas");
                                             }
                                             case 4-> {
+                                                usuario.añadirEntidadGlobal(opcionAdmin);
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Añadir Peliculas");
                                             }
