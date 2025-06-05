@@ -1,5 +1,6 @@
 package com.projecte.main;
 import java.util.Comparator;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import com.projecte.menus.*;
@@ -13,10 +14,11 @@ public class ProgramaPrincipal {
     private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores", "Ordenar Peliculas","Salir"});
     private static   Menu ordenarPeliculas = new Menu("Ordenar Peliculas", new String[] {"Per títol (Comparable)", "Per duració (Comparator)", "Per any + títol (Comparator múltiple)","Salir"});
 
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
-        boolean correctoInicioSesion = false;     
+        boolean correctoInicioSesion = false;
         String nombreUsuario = "";
 
         do {
@@ -34,7 +36,7 @@ public class ProgramaPrincipal {
                     Login login = new Login();
                     correctoInicioSesion = login.login();
                     nombreUsuario = login.getNombreUsuario();
-                    
+
                     while (correctoInicioSesion) {
                         try {
                             Usuario usuario = login.datosUsuario(login.getIdUsuario());
@@ -45,28 +47,28 @@ public class ProgramaPrincipal {
                                     menuAdministrador.mostrarMenu();
                                     try {
                                         opcionAdmin = sc.nextInt();
-                                        sc.nextLine(); // limpiar entrada
+                                        sc.nextLine();
 
                                         switch (opcionAdmin) {
                                             case 1, 2 ,3-> {
                                                 System.out.println("Ver lista de Actores");
                                                 usuario.listar(opcionAdmin);
                                             }
-                                            case 7-> {
-                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Eliminar Usuarios");
-                                            }
                                             case 5 -> {
-                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Metodo para añadir directores, qué campos necesitas?");
+                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                System.out.println("Metodo para añadir actores");
                                             }
                                             case 6 -> {
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Metodo para añadir actores");
+                                                System.out.println("Añadir Peliculas");
                                             }
                                             case 4-> {
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Añadir Peliculas");
+                                            }
+                                            case 7-> {
+                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                System.out.println("Eliminar Usuarios");
                                             }
                                             case 8-> {
                                                 System.out.println("Cerrando sesión del administrador...\n");
@@ -113,14 +115,15 @@ public class ProgramaPrincipal {
                     }
                 }
 
-                case 3 -> System.out.println("Saliendo...\n");  
+                case 3 -> System.out.println("Saliendo...\n");
                 default -> {
-                    if (opcion != -1) System.out.println("Opción incorrecta\n");
+                    if (opcion != -1)
+                        System.out.println("Opción incorrecta\n");
                 }
             }
         } while (opcion != 3 && !correctoInicioSesion);
 
         sc.close();
 
-    } //fin main
+    } // fin main
 }
