@@ -9,7 +9,8 @@ public class ProgramaPrincipal {
 
     private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Ver lista de Actores", "Ver lista de Peliculas", "Ver lista de Directores", "Eliminar Usuarios", "Añadir Directores","Añadir Actores","Añadir Peliculas", "Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
-    private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
+    private static Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
+    private static Menu ordenarPelis = new Menu("Ordenar Peliculas", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -96,7 +97,10 @@ public class ProgramaPrincipal {
 
                                         switch (opcionUsuario) {
                                             case 1, 2, 3 -> usuario.listar(opcionUsuario);
-                                            case 4 -> {
+                                            case 4 ->{
+
+                                            }
+                                            case 5 -> {
                                                 System.out.println("Cerrando sesión...\n");
                                                 correctoInicioSesion = false; // Volverá al menú de inicio
                                             }
