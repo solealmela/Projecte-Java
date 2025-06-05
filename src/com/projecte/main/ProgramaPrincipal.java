@@ -73,17 +73,14 @@ public class ProgramaPrincipal {
                                             }
                                             case 6 -> {
                                                 usuario.añadirEntidadGlobal(opcionAdmin);
-                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Añadir Peliculas");
+                                              
                                             }
                                             case 4-> {
                                                 usuario.añadirEntidadGlobal(opcionAdmin);
-                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Añadir director");
+                                                
                                             }
                                             case 7-> {
                                                 usuario.eliminarUsuario();
-                                                System.out.println("Eliminar Usuarios");
                                             }
                                             // Caso para eliminar Actor, Director o Película
                                             case 8 -> {
