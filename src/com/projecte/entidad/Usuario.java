@@ -534,16 +534,50 @@ public class Usuario extends Persona {
     }
     
 
-    public void eliminarUsuario(String nombreCarpetaUsuario) {
+    public void eliminarUsuario() {
+        System.out.println("Dime el nombre de la carpeta:");
+        String nombreCarpetaUsuario = scanner.nextLine();
+    
         File carpeta = new File("src/com/projecte/usuarios/" + nombreCarpetaUsuario);
         if (!carpeta.exists() || !carpeta.isDirectory()) {
             System.out.println("La carpeta del usuario no existe.");
             return;
         }
-
+    
+        // Eliminar carpeta recursivamente
         eliminarCarpetaRecursiva(carpeta);
+    
+        // Eliminar entrada del usuario en el archivo de usuarios
+        File archivoUsuarios = new File("src/com/projecte/datos/archivoUsuarios.txt");
+        File archivoTemporal = new File("src/com/projecte/datos/archivoUsuarios_temp.txt");
+    
+        try (
+            BufferedReader br = new BufferedReader(new FileReader(archivoUsuarios));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(archivoTemporal))
+        ) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (!linea.contains(nombreCarpetaUsuario)) {
+                    bw.write(linea);
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al procesar el archivo de usuarios: " + e.getMessage());
+            return;
+        }
+    
+        // Reemplazar el archivo original por el temporal
+        if (archivoUsuarios.delete()) {
+            archivoTemporal.renameTo(archivoUsuarios);
+            System.out.println("Usuario eliminado del archivo correctamente.");
+        } else {
+            System.out.println("Error al actualizar el archivo de usuarios.");
+        }
+    
         System.out.println("Carpeta del usuario eliminada correctamente.");
     }
+    
 
     private void eliminarCarpetaRecursiva(File carpeta) {
         File[] archivos = carpeta.listFiles();

@@ -79,7 +79,7 @@ public class ProgramaPrincipal {
                                                 System.out.println("Añadir Peliculas");
                                             }
                                             case 7-> {
-                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                usuario.eliminarUsuario();
                                                 System.out.println("Eliminar Usuarios");
                                             }
                                             // Caso para eliminar Actor, Director o Película
