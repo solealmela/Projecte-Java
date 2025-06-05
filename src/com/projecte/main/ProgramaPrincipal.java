@@ -1,4 +1,5 @@
 package com.projecte.main;
+import java.util.Comparator;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -9,21 +10,22 @@ import com.projecte.entidad.Usuario;
 public class ProgramaPrincipal {
 
     private static Menu menuAdministrador = new Menu("Menu Administrador",
-            new String[] { "Ver lista de Actores", "Ver lista de Peliculas", "Ver lista de Directores",
-                    "Añadir Directores", "Añadir Actores", "Añadir Peliculas", "Eliminar Usuarios",
-                    "Eliminar Entidad", "Salir" });
+        new String[] { "Ver lista de Actores", "Ver lista de Peliculas", "Ver lista de Directores",
+        "Añadir Directores", "Añadir Actores", "Añadir Peliculas", "Eliminar Usuarios",
+        "Eliminar Entidad", "Salir" });
 
     private static Menu menuInicio = new Menu("Menu de inicio",
-            new String[] { "Registro", "Inicio de sesión", "Salir" });
+        new String[] { "Registro", "Inicio de sesión", "Salir" });
 
     private static Menu menuUsuario = new Menu("Menu Usuarios", new String[] { "Ver lista de Actores",
-            "Ver lista de Peliculas", "Ver lista de Directores", "Ordenar Peliculas", "Salir" });
+        "Ver lista de Peliculas", "Ver lista de Directores", "Ordenar Peliculas", "Salir" });
 
     private static Menu ordenarPeliculas = new Menu("Ordenar Peliculas", new String[] { "Per títol (Comparable)",
-            "Per duració (Comparator)", "Per any + títol (Comparator múltiple)", "Salir" });
+        "Per duració (Comparator)", "Per any + títol (Comparator múltiple)", "Salir" });
 
     private static Menu menuEliminarEntidad = new Menu("Eliminar Entidad",
-            new String[] { "Eliminar Actores", "Eliminar Peliculas", "Eliminar Directores", "Volver" });
+        new String[] { "Eliminar Actores", "Eliminar Peliculas", "Eliminar Directores", "Volver" });
+
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -60,20 +62,24 @@ public class ProgramaPrincipal {
                                         sc.nextLine();
 
                                         switch (opcionAdmin) {
-                                            case 1, 2, 3 -> {
+                                            case 1, 2 ,3-> {
                                                 System.out.println("Ver lista de Actores");
-                                                usuario.listar(opcionAdmin);
-                                            }
-                                            case 4 -> {
-                                                System.out.println("Añadir Directores");
+                                                usuario.verListaGlobal(opcionAdmin);
                                             }
                                             case 5 -> {
-                                                System.out.println("Añadir Actores");
+                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                
                                             }
                                             case 6 -> {
+                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Añadir Peliculas");
                                             }
-                                            case 7 -> {
+                                            case 4-> {
+                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                System.out.println("Añadir Peliculas");
+                                            }
+                                            case 7-> {
+                                                usuario.eliminarUsuario();
                                                 System.out.println("Eliminar Usuarios");
                                             }
                                             // Caso para eliminar Actor, Director o Película
@@ -119,8 +125,7 @@ public class ProgramaPrincipal {
 
                                         switch (opcionUsuario) {
                                             case 1, 2, 3 -> usuario.listar(opcionUsuario);
-                                            case 4 -> {
-                                                ordenarPeliculas.mostrarMenu();
+                                            case 4 -> { ordenarPeliculas.mostrarMenu();
                                             }
                                             case 5 -> {
                                                 System.out.println("Cerrando sesión...\n");

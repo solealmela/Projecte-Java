@@ -123,7 +123,7 @@ public class Usuario extends Persona {
                             int anyo = Integer.parseInt(partes[3].trim());
 
                             Pelicula p = new Pelicula(nombrePelicula, duracion, anyo, new java.util.ArrayList<>(), 
-                                                      null);
+                            null);
 
                             listaPeliculas.add(p);
                         } else {
@@ -220,55 +220,52 @@ public class Usuario extends Persona {
 
     } // fin listar()
 
-    public void agregarEntidades(int opcionRuta, Usuario usuario) {
-        String archivoSalida = "src/com/projecte/datos/";
-        String nombreArchivo = "";
+        public void agregarEntidades(int opcionRuta, Usuario usuario) {
+            String archivoSalida = "src/com/projecte/datos/";
+            String nombreArchivo = "";
 
-        switch (opcionRuta) {
-            case 1 -> {
-                archivoSalida += "actor.dades";
-                nombreArchivo = "archivoActores.llista";
+            switch (opcionRuta) {
+                case 1 -> {
+                    archivoSalida += "actor.dades";
+                    nombreArchivo = "archivoActores.llista";
+                }
+                case 2 -> {
+                    archivoSalida += "peliculas.dades";
+                    nombreArchivo = "archivoPeliculas.llista";
+                }
+                case 3 -> {
+                    archivoSalida += "director.dades";
+                    nombreArchivo = "archivoDirectores.llista";
+                }
+                case 4 -> {
+                    System.out.println("Saliendo...");
+                    return;
+                }
+                default -> {
+                    System.out.println("Opción inválida.");
+                    return;
+                }
             }
-            case 2 -> {
-                archivoSalida += "peliculas.dades";
-                nombreArchivo = "archivoPeliculas.llista";
-            }
-            case 3 -> {
-                archivoSalida += "director.dades";
-                nombreArchivo = "archivoDirectores.llista";
-            }
-            case 4 -> {
-                System.out.println("Saliendo...");
+
+            String[] primeraParteCorreo = usuario.getEmail().split("@");
+            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + usuario.getId() + primeraParteCorreo[0] + "/";
+            File carpetaUsuario = new File(rutaCarpetaUsuario);
+
+            if (!carpetaUsuario.exists() || !carpetaUsuario.isDirectory()) {
+                System.out.println("La carpeta del usuario no existe: " + rutaCarpetaUsuario);
                 return;
             }
-            default -> {
-                System.out.println("Opción inválida.");
-                return;
-            }
-        }
 
-        String[] primeraParteCorreo = usuario.getEmail().split("@");
-        String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + usuario.getId() + primeraParteCorreo[0] + "/";
-        File carpetaUsuario = new File(rutaCarpetaUsuario);
+            String archivoDestino = rutaCarpetaUsuario + nombreArchivo;
 
-        if (!carpetaUsuario.exists() || !carpetaUsuario.isDirectory()) {
-            System.out.println("La carpeta del usuario no existe: " + rutaCarpetaUsuario);
-            return;
-        }
+            String opcion;
+            do {
+                System.out.print("Introduce el ID de la entidad que deseas agregar: ");
+                String idEntidad = scanner.nextLine().trim();
 
-        String archivoDestino = rutaCarpetaUsuario + nombreArchivo;
+                String lineaEntidad = buscarLineaPorId(archivoSalida, idEntidad);
 
-        String opcion;
-        do {
-            System.out.print("Introduce el ID de la entidad que deseas agregar: ");
-            String idEntidad = scanner.nextLine().trim();
-
-            String lineaEntidad = buscarLineaPorId(archivoSalida, idEntidad);
-
-            if (lineaEntidad != null) {
-                if (existeLineaEnArchivo(archivoDestino, lineaEntidad)) {
-                    System.out.println("La entidad ya existe en el archivo del usuario. No se agregará de nuevo.");
-                } else {
+                if (lineaEntidad != null) {
                     try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino, true))) {
                         bw.write(lineaEntidad);
                         bw.newLine();
@@ -276,51 +273,30 @@ public class Usuario extends Persona {
                     } catch (IOException e) {
                         System.out.println("Error al escribir en el archivo del usuario: " + e.getMessage());
                     }
+                } else {
+                    System.out.println("No se encontró ninguna entidad con ese ID.");
                 }
-            } else {
-                System.out.println("No se encontró ninguna entidad con ese ID.");
-            }
 
-            System.out.print("¿Deseas agregar otra entidad? (S/N): ");
-            opcion = scanner.nextLine().trim();
+                System.out.print("¿Deseas agregar otra entidad? (S/N): ");
+                opcion = scanner.nextLine().trim();
 
-        } while (!opcion.equalsIgnoreCase("n"));
-    }
-
-    private boolean existeLineaEnArchivo(String archivo, String lineaBuscada) {
-        File archivoDestino = new File(archivo);
-        if (!archivoDestino.exists()) {
-            return false;
+            } while (!opcion.equalsIgnoreCase("n"));
         }
 
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                if (linea.equals(lineaBuscada)) {
-                    return true;
+        public String buscarLineaPorId(String archivo, String idBuscado) {
+            try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+                String linea;
+                while ((linea = br.readLine()) != null) {
+                    String[] partes = linea.split(":");
+                    if (partes.length > 0 && partes[0].equals(idBuscado)) {
+                        return linea;
+                    }
                 }
+            } catch (IOException e) {
+                System.out.println("Error al leer el archivo: " + e.getMessage());
             }
-        } catch (IOException e) {
-            System.out.println("Error al verificar existencia de entidad: " + e.getMessage());
+            return null;
         }
-        return false;
-    }
-
-        
-    public String buscarLineaPorId(String archivo, String idBuscado) {
-        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] partes = linea.split(":");
-                if (partes.length > 0 && partes[0].equals(idBuscado)) {
-                    return linea;
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error al leer el archivo: " + e.getMessage());
-        }
-        return null;
-    }
         
 
         public void añadirEntidadGlobal(int tipoEntidad) {
@@ -556,17 +532,52 @@ public class Usuario extends Persona {
             }
         }
     }
+    
 
-    public void eliminarUsuario(String nombreCarpetaUsuario) {
+    public void eliminarUsuario() {
+        System.out.println("Dime el nombre de la carpeta:");
+        String nombreCarpetaUsuario = scanner.nextLine();
+    
         File carpeta = new File("src/com/projecte/usuarios/" + nombreCarpetaUsuario);
         if (!carpeta.exists() || !carpeta.isDirectory()) {
             System.out.println("La carpeta del usuario no existe.");
             return;
         }
-
+    
+        // Eliminar carpeta recursivamente
         eliminarCarpetaRecursiva(carpeta);
+    
+        // Eliminar entrada del usuario en el archivo de usuarios
+        File archivoUsuarios = new File("src/com/projecte/datos/archivoUsuarios.txt");
+        File archivoTemporal = new File("src/com/projecte/datos/archivoUsuarios_temp.txt");
+    
+        try (
+            BufferedReader br = new BufferedReader(new FileReader(archivoUsuarios));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(archivoTemporal))
+        ) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                if (!linea.contains(nombreCarpetaUsuario)) {
+                    bw.write(linea);
+                    bw.newLine();
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al procesar el archivo de usuarios: " + e.getMessage());
+            return;
+        }
+    
+        // Reemplazar el archivo original por el temporal
+        if (archivoUsuarios.delete()) {
+            archivoTemporal.renameTo(archivoUsuarios);
+            System.out.println("Usuario eliminado del archivo correctamente.");
+        } else {
+            System.out.println("Error al actualizar el archivo de usuarios.");
+        }
+    
         System.out.println("Carpeta del usuario eliminada correctamente.");
     }
+    
 
     private void eliminarCarpetaRecursiva(File carpeta) {
         File[] archivos = carpeta.listFiles();
@@ -580,6 +591,27 @@ public class Usuario extends Persona {
             }
         }
         carpeta.delete();
+    }  
+
+    public void verListaGlobal(int tipoEntidad) {
+        String archivo = switch (tipoEntidad) {
+            case 1 -> "src/com/projecte/datos/actor.dades";
+            case 2 -> "src/com/projecte/datos/peliculas.dades";
+            case 3 -> "src/com/projecte/datos/director.dades";
+            default -> 
+                "";
+            
+        };
+    
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            System.out.println("Contenido del archivo:");
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
     }
 
     @Override
