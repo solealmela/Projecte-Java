@@ -46,6 +46,22 @@ public class ProgramaPrincipal {
                                         sc.nextLine(); // limpiar entrada
 
                                         switch (opcionAdmin) {
+                                            case 1-> {
+                                                System.out.println("Ver lista de Actores");
+                                                usuario.listar(opcionAdmin);
+                                            }
+                                            case 2-> {
+                                                System.out.println("Ver lista de Peliculas.");
+                                                usuario.listar(opcionAdmin);
+                                            }
+                                            case 3 -> {
+                                                System.out.println("Ver lista de Directores");
+                                                usuario.listar(opcionAdmin);
+                                            }
+                                            case 4-> {
+                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                System.out.println("Eliminar Usuarios");
+                                            }
                                             case 5 -> {
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Metodo para añadir directores, qué campos necesitas?");
@@ -57,22 +73,6 @@ public class ProgramaPrincipal {
                                             case 7-> {
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Añadir Peliculas");
-                                            }
-                                            case 4-> {
-                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Eliminar Usuarios");
-                                            }
-                                            case 2-> {
-                                                System.out.println("Ver lista de Peliculas.");
-                                                usuario.listar(opcionAdmin);
-                                            }
-                                            case 1-> {
-                                                System.out.println("Ver lista de Actores");
-                                                usuario.listar(opcionAdmin);
-                                            }
-                                            case 3 -> {
-                                                System.out.println("Ver lista de Directores");
-                                                usuario.listar(opcionAdmin);
                                             }
                                             case 8-> {
                                                 System.out.println("Cerrando sesión del administrador...\n");
