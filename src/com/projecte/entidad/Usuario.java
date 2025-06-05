@@ -208,6 +208,7 @@ public class Usuario extends Persona {
             opcion = scanner.nextLine().trim();
 
             if (opcion.equalsIgnoreCase("s")) {
+
                 agregarEntidades(opcionRuta, this);
             } else if (opcion.equalsIgnoreCase("n")) {
                 System.out.println("No se agregará ningún dato en el archivo");
