@@ -53,11 +53,11 @@ public class ProgramaPrincipal {
                                         switch (opcionAdmin) {
                                             case 1, 2 ,3-> {
                                                 System.out.println("Ver lista de Actores");
-                                                usuario.listar(opcionAdmin);
+                                                usuario.verListaGlobal(opcionAdmin);
                                             }
                                             case 5 -> {
                                                  // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Metodo para añadir actores");
+                                                
                                             }
                                             case 6 -> {
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
