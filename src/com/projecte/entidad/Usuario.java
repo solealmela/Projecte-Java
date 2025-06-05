@@ -15,22 +15,22 @@ import java.util.Scanner;
 public class Usuario extends Persona {
 
     private int id;
-    private String rol;
-    private String poblacion;
     private String nombreUsuario;
-    private String contrasenya;
     private String email;
+    private String contrasenya;
+    private String poblacion;
+    private String rol;
     private Scanner scanner = new Scanner(System.in);
 
-    public Usuario(String nombre, String apellido, String fechaNacimiento, int id, String poblacion,
-            String nombreUsuario, String contrasenya, String email) {
+    public Usuario(int id, String nombre, String apellido, String fechaNacimiento, String nombreUsuario, String email,
+            String contrasenya, String poblacion, String rol) {
         super(nombre, apellido, fechaNacimiento);
         this.id = id;
-        rol = "ROL.USUARIO";
-        this.email = email;
-        this.poblacion = poblacion;
         this.nombreUsuario = nombreUsuario;
+        this.email = email;
         this.contrasenya = contrasenya;
+        this.poblacion = poblacion;
+        this.rol = "ROL_USUARIO";
     }
 
     public String getEmail() {
@@ -77,6 +77,7 @@ public class Usuario extends Persona {
         this.contrasenya = contrasenya;
     }
 
+    //Método para listar los archivos
     public void listar(int rutaFicheroPeliculas) {
         String rutaArchivo = "src/com/projecte/datos/";
 
@@ -305,10 +306,12 @@ public class Usuario extends Persona {
     }
 
     public void verListaGlobal(int tipoEntidad) { // verficar porque este no es necesario
-        String archivo = switch (tipoEntidad) {
-            case 1 -> "src/com/projecte/datos/actor.dades";
-            case 2 -> "src/com/projecte/datos/peliculas.dades";
-            case 3 -> "src/com/projecte/datos/director.dades";
+        String archivo = "src/com/projecte/datos/";
+
+        archivo += switch (tipoEntidad) {
+            case 1 -> "actor.dades";
+            case 2 -> "peliculas.dades";
+            case 3 -> "director.dades";
             default -> "Error al ver la lista";
         };
 
