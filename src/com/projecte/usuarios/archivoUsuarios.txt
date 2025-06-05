@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 0:administrador:admin:admin@admin.com:admin123:administrador:11-11-1111
 1:an:gui:an@gmail.com:123:xativa:04-10-2005
 
