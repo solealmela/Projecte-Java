@@ -1,43 +1,37 @@
 package com.projecte.entidad;
 
-public class Director extends Gestionable implements Comparable {
-    
-    static private int id;
-    static private String archivo = "src/com/projecte/usuarios/"+id+"/archivoDirectores.llista";
+import com.projecte.utils.Gestionable;
+
+public class Director extends Persona implements Gestionable {
+
+    private static int contadorId = 0;
+    private int id;
 
     public Director(String nombre, String apellido, String fechaNacimiento) {
         super(nombre, apellido, fechaNacimiento);
-        id++;
+        this.id = contadorId++;
     }
 
-        public static int getId() {
+    public int getId() {
         return id;
     }
 
-    public static void setId(int id) {
-        Director.id = id;
-    }
-
-
-        public int compareTo(Director o) {
-        try {
-            if (this.getId()>o.getId()) {
-                System.out.println("Estás comparando lo mismo");
-            }else{
-                System.out.println("No son iguales");;
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
+    // Implementación de la interfaz Gestionable
+    @Override
+    public String getIdentificador() {
+        return "D-" + id;
     }
 
     @Override
-    public int compareTo(Object o) {
-        //Este metodo se ejecuta si el objeto que le pasamos es un objeto no de tipo Director
-        throw new UnsupportedOperationException("Unimplemented method 'compareTo'");
+    public String resum() {
+        return super.getNombre() + " " + super.getApellido() + " (ID: " + getIdentificador() + ")";
     }
 
-    
+    @Override
+    public void mostrarDetalls() {
+        System.out.println("ID: " + getIdentificador());
+        System.out.println("Nombre: " + super.getNombre());
+        System.out.println("Apellido: " + super.getApellido());
+        System.out.println("Fecha de nacimiento: " + super.getFechaNacimiento());
+    }
 }
