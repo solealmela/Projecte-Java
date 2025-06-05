@@ -23,7 +23,6 @@ public class Menu {
 
     public void setOpciones(String[] opciones) {
         this.opciones = opciones;
-
     }
 
     public void mostrarMenu() {

@@ -123,7 +123,7 @@ public class Usuario extends Persona {
                             int anyo = Integer.parseInt(partes[3].trim());
 
                             Pelicula p = new Pelicula(nombrePelicula, duracion, anyo, new java.util.ArrayList<>(), 
-                                                      null);
+                            null);
 
                             listaPeliculas.add(p);
                         } else {
@@ -280,7 +280,7 @@ public class Usuario extends Persona {
         
     } // fin agregar
 
-        public void añadirEntidadGlobal(int tipoEntidad) {
+        public void anadirEntidadGlobal(int tipoEntidad) {
         String archivo = switch (tipoEntidad) {
             case 1 -> "src/com/projecte/datos/actor.dades";
             case 2 -> "src/com/projecte/datos/peliculas.dades";
@@ -305,16 +305,29 @@ public class Usuario extends Persona {
         }
     }
 
-    public void verListaGlobal(int tipoEntidad) { // verficar porque este no es necesario
-        String archivo = "src/com/projecte/datos/";
-
-        archivo += switch (tipoEntidad) {
-            case 1 -> "actor.dades";
-            case 2 -> "peliculas.dades";
-            case 3 -> "director.dades";
-            default -> "Error al ver la lista";
+    public void verListaUsuarios(int tipoEntidad) {
+        System.out.println("Dime el ID del usuario:");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Limpiar el salto de línea pendiente
+        System.out.println("Dime el nombre:");
+        String nombre = scanner.nextLine();
+    
+        String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + id + nombre + "/";
+        String archivoUsuario;
+    
+        archivoUsuario = switch (tipoEntidad) {
+            case 4 -> rutaCarpetaUsuario + "archivoActores.llista";
+            case 5 -> rutaCarpetaUsuario + "archivoPeliculas.llista";
+            case 6 -> rutaCarpetaUsuario + "archivoDirectores.llista";
+            default -> "Error al encontrar la carpeta usuario";
         };
-
+    
+        File archivo = new File(archivoUsuario);
+        if (!archivo.exists()) {
+            System.out.println("El archivo no existe: " + archivoUsuario);
+            return;
+        }
+    
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             System.out.println("Contenido del archivo:");
@@ -325,9 +338,15 @@ public class Usuario extends Persona {
             System.out.println("Error al leer el archivo: " + e.getMessage());
         }
     }
+    
 
-    public void eliminarUsuario(String nombreCarpetaUsuario) {
-        File carpeta = new File("src/com/projecte/usuarios/" + nombreCarpetaUsuario);
+    public void eliminarUsuario() {
+        System.out.println("dime el ID del usuario");
+        int id = scanner.nextInt();
+        System.out.println("dime el nombre");
+        String nombre = scanner.nextLine();
+
+        File carpeta = new File("src/com/projecte/usuarios/" + id+nombre);
         if (!carpeta.exists() || !carpeta.isDirectory()) {
             System.out.println("La carpeta del usuario no existe.");
             return;

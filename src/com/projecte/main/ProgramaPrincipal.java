@@ -7,7 +7,7 @@ import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
 
-    private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Añadir Directores","Añadir Actores","Añadir Peliculas","Eliminar Usuarios","Ver lista de Peliculas","Ver lista de Actores","Ver lista de Directores", "Salir"});
+    private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Añadir Directores","Añadir Actores","Añadir Peliculas","Ver lista de Peliculas","Ver lista de Actores","Ver lista de Directores","Eliminar Usuarios", "Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
     private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
 
@@ -46,11 +46,18 @@ public class ProgramaPrincipal {
                                         sc.nextLine(); // limpiar entrada
 
                                         switch (opcionAdmin) {
-                                            case 1, 2, 3, 4, 5, 6, 7, 8 -> {
+                                            case 1, 2, 3-> {
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Funcionalidad aún no implementada.");
+                                                usuario.anadirEntidadGlobal(opcionAdmin);
                                             }
-                                            case 11 -> {
+                                            case 4, 5, 6 ->{
+                                                usuario.verListaUsuarios(opcionAdmin);
+                                            }
+                                            case 7 ->{
+                                                usuario.eliminarUsuario();;
+                                            }
+                                            case 8 -> {
                                                 System.out.println("Cerrando sesión de administrador...\n");
                                                 correctoInicioSesion = false; // Volverá al menú de inicio
                                             }
