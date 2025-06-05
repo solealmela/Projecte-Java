@@ -12,7 +12,8 @@ public class ProgramaPrincipal {
     private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Ver lista de Actores", "Ver lista de Peliculas", "Ver lista de Directores", "Añadir Directores","Añadir Actores","Añadir Peliculas","Eliminar Usuarios", "Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
     private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores", "Ordenar Peliculas","Salir"});
-    private static   Menu ordenarPeliculas = new Menu("Ordenar Peliculas", new String[] {"Per títol (Comparable)", "Per duració (Comparator)", "Per any + títol (Comparator múltiple)","Salir"});
+    private static   Menu ordenarPeliculas = new Menu("Ordenar Peliculas", new String[] {"Por título (Comparable)", "Por duración (Comparator)", "Por año + título (Comparator múltiple)" ,"Salir"});
+
 
 
     public static void main(String[] args) {
@@ -92,7 +93,7 @@ public class ProgramaPrincipal {
 
                                         switch (opcionUsuario) {
                                             case 1, 2, 3 -> usuario.listar(opcionUsuario);
-                                            case 4 -> { ordenarPeliculas. mostrarMenu();
+                                            case 4 -> { ordenarPeliculas.mostrarMenu();
                                             }
                                             case 5 -> {
                                                 System.out.println("Cerrando sesión...\n");
