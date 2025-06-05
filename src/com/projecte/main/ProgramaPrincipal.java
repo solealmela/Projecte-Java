@@ -14,6 +14,7 @@ public class ProgramaPrincipal {
     private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores", "Ordenar Peliculas","Salir"});
     private static   Menu ordenarPeliculas = new Menu("Ordenar Peliculas", new String[] {"Per títol (Comparable)", "Per duració (Comparator)", "Per any + títol (Comparator múltiple)","Salir"});
 
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int opcion;
