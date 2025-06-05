@@ -77,17 +77,20 @@ public class Usuario extends Persona {
         this.contrasenya = contrasenya;
     }
 
-    //Método para listar los archivos
-    public void listar(int rutaFicheroPeliculas) {
+    // Método para listar los archivos
+    public void listar(int opcionRuta) {
         String rutaArchivo = "src/com/projecte/datos/";
 
-        switch (rutaFicheroPeliculas) {
+        // Según la opción introducida, listamos actores, directores o peliculas
+        switch (opcionRuta) {
             case 1 -> {
                 rutaArchivo += "actor.dades";
                 System.out.println("Comprobando archivo de Actores en: actor.dades");
 
+                // Leemos el archivo
                 try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
                     String linea;
+                    // Recorremos el archivo y lo listamos
                     while ((linea = bf.readLine()) != null) {
                         String[] partes = linea.split(":");
                         if (partes.length >= 3) {
@@ -113,11 +116,10 @@ public class Usuario extends Persona {
 
                 try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
                     String linea;
+                    //Recorremos el archivo y lo listamos
                     while ((linea = bf.readLine()) != null) {
-                        // id:nombre:duracionMinutos:any:idDirector:idsActores
                         String[] partes = linea.split(":");
                         if (partes.length >= 4) {
-                            // Extraemos el nombre, duración y año
                             String nombrePelicula = partes[1].trim();
                             int duracion = Integer.parseInt(partes[2].trim());
                             int anyo = Integer.parseInt(partes[3].trim());
@@ -140,12 +142,12 @@ public class Usuario extends Persona {
                     return;
                 }
 
+                // ORDENAMOS LAS PELICULAS
+
                 // Orden natural por título
                 Collections.sort(listaPeliculas);
                 System.out.println("\n--- Películas ordenadas por título ---");
-                for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
-                }
+                listaPeliculas.forEach(p->System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
 
                 // Ordenar por duración
                 Collections.sort(listaPeliculas, new Comparator<Pelicula>() {
@@ -155,9 +157,7 @@ public class Usuario extends Persona {
                     }
                 });
                 System.out.println("\n--- Películas ordenadas por duración ---");
-                for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
-                }
+                listaPeliculas.forEach(p->System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
 
                 // Ordenar por año y en caso de empate, ordenamos por título
                 Collections.sort(listaPeliculas, new Comparator<Pelicula>() {
@@ -171,9 +171,7 @@ public class Usuario extends Persona {
                     }
                 });
                 System.out.println("\n--- Películas ordenadas por año ---");
-                for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
-                }
+                listaPeliculas.forEach(p->System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
             }
 
             case 3 -> {
@@ -181,6 +179,7 @@ public class Usuario extends Persona {
                 System.out.println("Comprobando archivo de Directores en: director.dades");
                 try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
                     String linea;
+                    // Recorremos el archivo y lo listamos
                     while ((linea = bf.readLine()) != null) {
                         String[] partes = linea.split(":");
                         if (partes.length >= 3) {
@@ -209,7 +208,7 @@ public class Usuario extends Persona {
             opcion = scanner.nextLine().trim();
 
             if (opcion.equalsIgnoreCase("s")) {
-                agregarEntidades(rutaFicheroPeliculas, this);
+                agregarEntidades(opcionRuta, this);
             } else if (opcion.equalsIgnoreCase("n")) {
                 System.out.println("No se agregará ningún dato en el archivo");
             } else {
@@ -220,11 +219,11 @@ public class Usuario extends Persona {
 
     } // fin listar()
 
-    public void agregarEntidades(int rutaFicheroPeliculas, Usuario usuario) {
+    public void agregarEntidades(int opcionRuta, Usuario usuario) {
         String archivoSalida = "src/com/projecte/datos/";
         String nombreArchivo = "";
 
-        switch (rutaFicheroPeliculas) {
+        switch (opcionRuta) {
             case 1 -> {
                 archivoSalida += "actor.dades";
                 nombreArchivo = "archivoActores.llista";
@@ -247,7 +246,9 @@ public class Usuario extends Persona {
             }
         }
 
-        String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId()) + usuario.getNombre()+"/"; //ruta carpeta + la carpeta usuario 
+        String[] primeraParteCorreo = usuario.getEmail().split("@");
+
+        String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId()) + primeraParteCorreo+"/"; //ruta carpeta + la carpeta usuario 
         File carpetaUsuario = new File(rutaCarpetaUsuario);
 
         if (!carpetaUsuario.exists() || !carpetaUsuario.isDirectory()) {
@@ -281,28 +282,30 @@ public class Usuario extends Persona {
     } // fin agregar
 
         public void añadirEntidadGlobal(int tipoEntidad) {
-        String archivo = switch (tipoEntidad) {
-            case 1 -> "src/com/projecte/datos/actor.dades";
-            case 2 -> "src/com/projecte/datos/peliculas.dades";
-            case 3 -> "src/com/projecte/datos/director.dades";
-            default -> "Error al añadir";
-        };
+            String archivo = "src/com/projecte/datos/";
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
-            System.out.print("Introduce el ID: ");
-            String id = scanner.nextLine();
-            System.out.print("Introduce el nombre: ");
-            String nombre = scanner.nextLine();
-            System.out.print("Introduce el apellido: ");
-            String apellido = scanner.nextLine();
+            archivo += switch (tipoEntidad) {
+                case 1 -> "actor.dades";
+                case 2 -> "peliculas.dades";
+                case 3 -> "director.dades";
+                default -> "Error al ver la lista";
+            };
 
-            String nuevaLinea = id + ":" + nombre + ":" + apellido;
-            bw.write(nuevaLinea);
-            bw.newLine();
-            System.out.println("Entidad añadida correctamente.");
-        } catch (IOException e) {
-            System.out.println("Error al escribir en el archivo: " + e.getMessage());
-        }
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true))) {
+                System.out.print("Introduce el ID: ");
+                String id = scanner.nextLine();
+                System.out.print("Introduce el nombre: ");
+                String nombre = scanner.nextLine();
+                System.out.print("Introduce el apellido: ");
+                String apellido = scanner.nextLine();
+
+                String nuevaLinea = id + ":" + nombre + ":" + apellido;
+                bw.write(nuevaLinea);
+                bw.newLine();
+                System.out.println("Entidad añadida correctamente.");
+            } catch (IOException e) {
+                System.out.println("Error al escribir en el archivo: " + e.getMessage());
+            }
     }
 
     public void verListaGlobal(int tipoEntidad) { // verficar porque este no es necesario
