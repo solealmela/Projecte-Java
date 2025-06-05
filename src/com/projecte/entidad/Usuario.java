@@ -65,7 +65,6 @@ public class Usuario extends Gestionable {
 
     public void listar(int rutaFicheroPeliculas) {
         String rutaArchivo = "src/com/projecte/datos/";
-      
         switch (rutaFicheroPeliculas) {
             case 1 -> {
                 rutaArchivo += "actor.dades"; 
@@ -117,7 +116,6 @@ public class Usuario extends Gestionable {
     public void agregarEntidades(int rutaFicheroPeliculas,Usuario usuario, String opcion){
         String archivoSalida = null;
         String nombreArchivo = null;
-      
         while (!opcion.equalsIgnoreCase("n")) { //bucle para añadir 
                 
             switch (rutaFicheroPeliculas) {
@@ -150,9 +148,7 @@ public class Usuario extends Gestionable {
 
             System.out.println("Introduce el ID de la entidad que deseas copiar:");
             String idEntidadBuscada = scanner.nextLine();
-
-             boolean encontrada = false;
-
+            boolean encontrada = false;
             try (
                 BufferedReader br = new BufferedReader(new FileReader(archivoSalida));
                 BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino, true))
@@ -214,9 +210,10 @@ public class Usuario extends Gestionable {
     }
 }
 
-public void verListaGlobal(int tipoEntidad) { // verficar porque este no es necesario
+public void verListaUsuarios(int tipoEntidad) { // verficar porque este no es necesario
     String archivo = switch (tipoEntidad) {
-        case 1 -> "src/com/projecte/datos/actor.dades";
+        String datos = "src/com/projecte/usuarios/";
+        case 1 -> "src/com/projecte/";
         case 2 -> "src/com/projecte/datos/peliculas.dades";
         case 3 -> "src/com/projecte/datos/director.dades";
         default -> "Error al ver la lista";
