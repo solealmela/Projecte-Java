@@ -9,7 +9,7 @@ public class ProgramaPrincipal {
 
     private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Añadir Directores","Añadir Actores","Añadir Peliculas","Eliminar Usuarios","Ver lista de Peliculas","Ver lista de Actores","Ver lista de Directores", "Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
-    private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
+    private static Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
