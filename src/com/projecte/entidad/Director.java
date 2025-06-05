@@ -1,8 +1,8 @@
 package com.projecte.entidad;
-
 import com.projecte.utils.Gestionable;
+import java.io.Serializable;
 
-public class Director extends Persona implements Gestionable {
+public class Director extends Persona implements Gestionable, Serializable {
 
     private static int contadorId = 0;
     private int id;

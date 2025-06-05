@@ -12,14 +12,17 @@ public class Login {
     private String nombreUsuario;
     private String idUsuario;
 
+    // Devuelve el ID del usuario que ha hecho login
     public String getIdUsuario() {
         return idUsuario;
     }
     
+    // Devuelve el nombre del usuario que ha hecho login
     public String getNombreUsuario() {
         return nombreUsuario;
     }
 
+    // Método para realizar el login leyendo usuario y contraseña desde consola
     public boolean login() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Introduce el nombre de usuario: ");
@@ -27,10 +30,10 @@ public class Login {
         System.out.print("Introduce la contraseña: ");
         String contrasenya = sc.nextLine();
 
-        //Booleanos para identificar el error
         boolean usuarioEncontrado = false;
         boolean accesoConcedido = false;
 
+        // Lee el archivo con los datos de usuarios para validar credenciales
         try (BufferedReader lector = new BufferedReader(new FileReader("src/com/projecte/usuarios/archivoUsuarios.txt"))) {
             String linea;
 
@@ -65,13 +68,14 @@ public class Login {
         return accesoConcedido;
     }
 
-    public Usuario datosUsuario(String idUsuario) throws IOException{ // metodo para obtener los datos del usuario
+    // Obtiene los datos completos de un usuario dado su ID
+    public Usuario datosUsuario(String idUsuario) throws IOException {
         try (BufferedReader leer= new BufferedReader(new FileReader("src/com/projecte/usuarios/archivoUsuarios.txt"))) {
             String linea;
             while ((linea = leer.readLine()) != null) {
                 String[] datos = linea.split(":");
                 if (datos.length >= 5 && datos[0].equals(idUsuario)) {
-                    int id =Integer.parseInt(datos[0]);
+                    int id = Integer.parseInt(datos[0]);
                     String fechaNacimiento = datos[6];
                     String rol = "ROL_USUARIO"; 
                     String poblacion = datos[5];
@@ -82,8 +86,7 @@ public class Login {
                    
                     return new Usuario(id, nombreUsuario, apellido, fechaNacimiento, nombreUsuario, email, contrasenya, poblacion, rol);
                 }
-            }// fin while
-
+            }
         }
         return null;
     }

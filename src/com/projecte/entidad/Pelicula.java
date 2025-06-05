@@ -1,10 +1,10 @@
 package com.projecte.entidad;
-
 import com.projecte.utils.Gestionable;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pelicula implements Comparable<Pelicula>, Gestionable {
+public class Pelicula implements Comparable<Pelicula>, Gestionable, Serializable {
 
     private static int nextId = 1;
 

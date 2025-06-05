@@ -1,8 +1,8 @@
 package com.projecte.entidad;
-
 import com.projecte.utils.Gestionable;
+import java.io.Serializable;
 
-public class Actor extends Persona implements Gestionable {
+public class Actor extends Persona implements Gestionable, Serializable {
 
     private static int nextId = 1;
     private int id;
