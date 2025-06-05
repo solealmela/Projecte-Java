@@ -77,7 +77,7 @@ public class Usuario extends Persona {
         this.contrasenya = contrasenya;
     }
 
-    //Método para listar los archivos
+    // Método para listar los archivos
     public void listar(int opcionRuta) {
         String rutaArchivo = "src/com/projecte/datos/";
 
@@ -122,8 +122,8 @@ public class Usuario extends Persona {
                             int duracion = Integer.parseInt(partes[2].trim());
                             int anyo = Integer.parseInt(partes[3].trim());
 
-                            Pelicula p = new Pelicula(nombrePelicula, duracion, anyo, new java.util.ArrayList<>(), 
-                            null);
+                            Pelicula p = new Pelicula(nombrePelicula, duracion, anyo, new java.util.ArrayList<>(),
+                                    null);
 
                             listaPeliculas.add(p);
                         } else {
@@ -144,7 +144,8 @@ public class Usuario extends Persona {
                 Collections.sort(listaPeliculas);
                 System.out.println("\n--- Películas ordenadas por título ---");
                 for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
+                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: "
+                            + p.getDuracionMinutos() + " min");
                 }
 
                 // Ordenar por duración
@@ -156,7 +157,8 @@ public class Usuario extends Persona {
                 });
                 System.out.println("\n--- Películas ordenadas por duración ---");
                 for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
+                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: "
+                            + p.getDuracionMinutos() + " min");
                 }
 
                 // Ordenar por año y en caso de empate, ordenamos por título
@@ -172,7 +174,8 @@ public class Usuario extends Persona {
                 });
                 System.out.println("\n--- Películas ordenadas por año ---");
                 for (Pelicula p : listaPeliculas) {
-                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min");
+                    System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: "
+                            + p.getDuracionMinutos() + " min");
                 }
             }
 
@@ -220,84 +223,83 @@ public class Usuario extends Persona {
 
     } // fin listar()
 
-        public void agregarEntidades(int opcionRuta, Usuario usuario) {
-            String archivoSalida = "src/com/projecte/datos/";
-            String nombreArchivo = "";
+    public List<Pelicula> leerPeliculasDesdeArchivo() {
+        List<Pelicula> listaPeliculas = new ArrayList<>();
+        String rutaArchivo = "src/com/projecte/datos/peliculas.dades";
 
-            switch (opcionRuta) {
-                case 1 -> {
-                    archivoSalida += "actor.dades";
-                    nombreArchivo = "archivoActores.llista";
-                }
-                case 2 -> {
-                    archivoSalida += "peliculas.dades";
-                    nombreArchivo = "archivoPeliculas.llista";
-                }
-                case 3 -> {
-                    archivoSalida += "director.dades";
-                    nombreArchivo = "archivoDirectores.llista";
-                }
-                case 4 -> {
-                    System.out.println("Saliendo...");
-                    return;
-                }
-                default -> {
-                    System.out.println("Opción inválida.");
-                    return;
+        try (BufferedReader bf = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = bf.readLine()) != null) {
+                String[] partes = linea.split(":");
+                if (partes.length >= 4) {
+                    String nombrePelicula = partes[1].trim();
+                    int duracion = Integer.parseInt(partes[2].trim());
+                    int anyo = Integer.parseInt(partes[3].trim());
+
+                    Pelicula p = new Pelicula(nombrePelicula, duracion, anyo, new ArrayList<>(), null);
+                    listaPeliculas.add(p);
                 }
             }
+        } catch (IOException e) {
+            System.out.println("Error al leer películas: " + e.getMessage());
+        }
 
-            String[] primeraParteCorreo = usuario.getEmail().split("@");
-            String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + usuario.getId() + primeraParteCorreo[0] + "/";
-            File carpetaUsuario = new File(rutaCarpetaUsuario);
+        return listaPeliculas;
+    }
 
-            if (!carpetaUsuario.exists() || !carpetaUsuario.isDirectory()) {
-                System.out.println("La carpeta del usuario no existe: " + rutaCarpetaUsuario);
+    public void mostrarPeliculasOrdenadasPorTitulo(List<Pelicula> peliculas) {
+        Collections.sort(peliculas);
+        System.out.println("\n--- Películas ordenadas por título ---");
+        peliculas.forEach(p -> 
+            System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
+    }
+
+    public void mostrarPeliculasOrdenadasPorDuracion(List<Pelicula> peliculas) {
+        peliculas.sort(Comparator.comparingInt(Pelicula::getDuracionMinutos));
+        System.out.println("\n--- Películas ordenadas por duración ---");
+        peliculas.forEach(p -> 
+            System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
+    }
+
+    public void mostrarPeliculasOrdenadasPorAnyo(List<Pelicula> peliculas) {
+        peliculas.sort((p1, p2) -> {
+            int cmp = Integer.compare(p1.getAny(), p2.getAny());
+            return cmp != 0 ? cmp : p1.getNombre().compareToIgnoreCase(p2.getNombre());
+        });
+        System.out.println("\n--- Películas ordenadas por año ---");
+        peliculas.forEach(p -> 
+            System.out.println(p.getNombre() + " - Año: " + p.getAny() + " - Duración: " + p.getDuracionMinutos() + " min"));
+    }
+
+
+    public void agregarEntidades(int opcionRuta, Usuario usuario) {
+        String archivoSalida = "src/com/projecte/datos/";
+        String nombreArchivo = "";
+
+        switch (opcionRuta) {
+            case 1 -> {
+                archivoSalida += "actor.dades";
+                nombreArchivo = "archivoActores.llista";
+            }
+            case 2 -> {
+                archivoSalida += "peliculas.dades";
+                nombreArchivo = "archivoPeliculas.llista";
+            }
+            case 3 -> {
+                archivoSalida += "director.dades";
+                nombreArchivo = "archivoDirectores.llista";
+            }
+            case 4 -> {
+                System.out.println("Saliendo...");
                 return;
             }
-
-            String archivoDestino = rutaCarpetaUsuario + nombreArchivo;
-
-            String opcion;
-            do {
-                System.out.print("Introduce el ID de la entidad que deseas agregar: ");
-                String idEntidad = scanner.nextLine().trim();
-
-                String lineaEntidad = buscarLineaPorId(archivoSalida, idEntidad);
-
-                if (lineaEntidad != null) {
-                    try (BufferedWriter bw = new BufferedWriter(new FileWriter(archivoDestino, true))) {
-                        bw.write(lineaEntidad);
-                        bw.newLine();
-                        System.out.println("Entidad agregada al archivo del usuario.");
-                    } catch (IOException e) {
-                        System.out.println("Error al escribir en el archivo del usuario: " + e.getMessage());
-                    }
-                } else {
-                    System.out.println("No se encontró ninguna entidad con ese ID.");
-                }
-
-                System.out.print("¿Deseas agregar otra entidad? (S/N): ");
-                opcion = scanner.nextLine().trim();
-
-            } while (!opcion.equalsIgnoreCase("n"));
-        }
-
-        public String buscarLineaPorId(String archivo, String idBuscado) {
-            try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
-                String linea;
-                while ((linea = br.readLine()) != null) {
-                    String[] partes = linea.split(":");
-                    if (partes.length > 0 && partes[0].equals(idBuscado)) {
-                        return linea;
-                    }
-                }
-            } catch (IOException e) {
-                System.out.println("Error al leer el archivo: " + e.getMessage());
+            default -> {
+                System.out.println(" no va");
             }
-            return null;
         }
-        
+            
+            
+        }
 
         public void añadirEntidadGlobal(int tipoEntidad) {
             String archivo = switch (tipoEntidad) {
@@ -353,31 +355,30 @@ public class Usuario extends Persona {
                 System.out.println("Error al escribir en el archivo: " + e.getMessage());
             }
         }        
-
     public void verListaUsuarios(int tipoEntidad) {
         System.out.println("Dime el ID del usuario:");
         int id = scanner.nextInt();
         scanner.nextLine(); // Limpiar el salto de línea pendiente
         System.out.println("Dime el nombre:");
         String nombre = scanner.nextLine();
-    
+
         String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + id + nombre + "/";
         String archivoUsuario;
-    
+
         archivoUsuario = switch (tipoEntidad) {
             case 4 -> rutaCarpetaUsuario + "archivoActores.llista";
             case 5 -> rutaCarpetaUsuario + "archivoPeliculas.llista";
             case 6 -> rutaCarpetaUsuario + "archivoDirectores.llista";
-            default -> 
+            default ->
                 "Error al entrar";
         };
-    
+
         File archivo = new File(archivoUsuario);
         if (!archivo.exists()) {
             System.out.println("El archivo no existe: " + archivoUsuario);
             return;
         }
-    
+
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             System.out.println("Contenido del archivo:");
@@ -512,15 +513,15 @@ public class Usuario extends Persona {
     public void limpiarListasPersonales() {
         String baseRuta = "src/com/projecte/usuarios/" + this.getId() + this.getEmail().split("@")[0] + "/";
         String[] archivos = {
-            "archivoActores.llista",
-            "archivoPeliculas.llista",
-            "archivoDirectores.llista"
+                "archivoActores.llista",
+                "archivoPeliculas.llista",
+                "archivoDirectores.llista"
         };
 
         String[] archivosGenerales = {
-            "src/com/projecte/datos/actor.dades",
-            "src/com/projecte/datos/peliculas.dades",
-            "src/com/projecte/datos/director.dades"
+                "src/com/projecte/datos/actor.dades",
+                "src/com/projecte/datos/peliculas.dades",
+                "src/com/projecte/datos/director.dades"
         };
 
         for (int i = 0; i < archivos.length; i++) {
@@ -562,29 +563,27 @@ public class Usuario extends Persona {
             }
         }
     }
-    
 
     public void eliminarUsuario() {
         System.out.println("Dime el nombre de la carpeta:");
         String nombreCarpetaUsuario = scanner.nextLine();
-    
+
         File carpeta = new File("src/com/projecte/usuarios/" + nombreCarpetaUsuario);
         if (!carpeta.exists() || !carpeta.isDirectory()) {
             System.out.println("La carpeta del usuario no existe.");
             return;
         }
-    
+
         // Eliminar carpeta recursivamente
         eliminarCarpetaRecursiva(carpeta);
-    
+
         // Eliminar entrada del usuario en el archivo de usuarios
         File archivoUsuarios = new File("src/com/projecte/datos/archivoUsuarios.txt");
         File archivoTemporal = new File("src/com/projecte/datos/archivoUsuarios_temp.txt");
-    
+
         try (
-            BufferedReader br = new BufferedReader(new FileReader(archivoUsuarios));
-            BufferedWriter bw = new BufferedWriter(new FileWriter(archivoTemporal))
-        ) {
+                BufferedReader br = new BufferedReader(new FileReader(archivoUsuarios));
+                BufferedWriter bw = new BufferedWriter(new FileWriter(archivoTemporal))) {
             String linea;
             while ((linea = br.readLine()) != null) {
                 if (!linea.contains(nombreCarpetaUsuario)) {
@@ -596,7 +595,7 @@ public class Usuario extends Persona {
             System.out.println("Error al procesar el archivo de usuarios: " + e.getMessage());
             return;
         }
-    
+
         // Reemplazar el archivo original por el temporal
         if (archivoUsuarios.delete()) {
             archivoTemporal.renameTo(archivoUsuarios);
@@ -604,10 +603,9 @@ public class Usuario extends Persona {
         } else {
             System.out.println("Error al actualizar el archivo de usuarios.");
         }
-    
+
         System.out.println("Carpeta del usuario eliminada correctamente.");
     }
-    
 
     private void eliminarCarpetaRecursiva(File carpeta) {
         File[] archivos = carpeta.listFiles();
@@ -621,18 +619,18 @@ public class Usuario extends Persona {
             }
         }
         carpeta.delete();
-    }  
+    }
 
     public void verListaGlobal(int tipoEntidad) {
         String archivo = switch (tipoEntidad) {
             case 1 -> "src/com/projecte/datos/actor.dades";
             case 2 -> "src/com/projecte/datos/peliculas.dades";
             case 3 -> "src/com/projecte/datos/director.dades";
-            default -> 
+            default ->
                 "";
-            
+
         };
-    
+
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String linea;
             System.out.println("Contenido del archivo:");
@@ -646,6 +644,7 @@ public class Usuario extends Persona {
 
     @Override
     public String toString() {
-        return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario + "]";
+        return "Usuari [rol=" + rol + ", id=" + id + ", poblacion=" + poblacion + ", nombreUsuario=" + nombreUsuario
+                + "]";
     }
 }
