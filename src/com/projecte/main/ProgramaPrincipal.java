@@ -1,4 +1,5 @@
 package com.projecte.main;
+import java.util.Comparator;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import com.projecte.menus.*;
@@ -9,8 +10,8 @@ public class ProgramaPrincipal {
 
     private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Ver lista de Actores", "Ver lista de Peliculas", "Ver lista de Directores", "Eliminar Usuarios", "Añadir Directores","Añadir Actores","Añadir Peliculas", "Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
-    private static Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
-    private static Menu ordenarPelis = new Menu("Ordenar Peliculas", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
+    private static Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Menu Prdenar Peliculas","Salir"});
+    private static Menu ordenarPeliculas = new Menu("Menu ordenar peliculas", new String[] {"1. Per títol (Comparable)", "2. Per duració (Comparator)", "3. Per any + títol (Comparator múltiple)"});
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -47,16 +48,8 @@ public class ProgramaPrincipal {
                                         sc.nextLine(); // limpiar entrada
 
                                         switch (opcionAdmin) {
-                                            case 1-> {
+                                            case 1, 2, 3-> {
                                                 System.out.println("Ver lista de Actores");
-                                                usuario.listar(opcionAdmin);
-                                            }
-                                            case 2-> {
-                                                System.out.println("Ver lista de Peliculas.");
-                                                usuario.listar(opcionAdmin);
-                                            }
-                                            case 3 -> {
-                                                System.out.println("Ver lista de Directores");
                                                 usuario.listar(opcionAdmin);
                                             }
                                             case 4-> {
@@ -97,8 +90,12 @@ public class ProgramaPrincipal {
 
                                         switch (opcionUsuario) {
                                             case 1, 2, 3 -> usuario.listar(opcionUsuario);
-                                            case 4 ->{
-
+                                            case 4-> {
+                                                ordenarPeliculas.mostrarMenu();
+                                                opcion = sc.nextInt();
+                                                sc.nextLine(); // limpiar entrada
+                                                switch(opcion)
+                                                case 1->
                                             }
                                             case 5 -> {
                                                 System.out.println("Cerrando sesión...\n");

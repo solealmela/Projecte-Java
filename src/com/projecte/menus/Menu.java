@@ -8,7 +8,6 @@ public class Menu {
         this.titulo = titulo;
         this.opciones = opciones;
     }
-
     public String getTitulo() {
         return titulo;
     }
@@ -23,7 +22,6 @@ public class Menu {
 
     public void setOpciones(String[] opciones) {
         this.opciones = opciones;
-
     }
 
     public void mostrarMenu() {
