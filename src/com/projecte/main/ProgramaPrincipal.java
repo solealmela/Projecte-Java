@@ -25,22 +25,6 @@ public class ProgramaPrincipal {
 
     private static Menu menuEliminarEntidad = new Menu("Eliminar Entidad",
         new String[] { "Eliminar Actores", "Eliminar Peliculas", "Eliminar Directores", "Volver" });
-    private static Menu menuAdministrador = new Menu("Menu Administrador",
-        new String[] { "Ver lista de Actores", "Ver lista de Peliculas", "Ver lista de Directores",
-        "Añadir Directores", "Añadir Actores", "Añadir Peliculas", "Eliminar Usuarios",
-        "Eliminar Entidad", "Salir" });
-
-    private static Menu menuInicio = new Menu("Menu de inicio",
-        new String[] { "Registro", "Inicio de sesión", "Salir" });
-
-    private static Menu menuUsuario = new Menu("Menu Usuarios", new String[] { "Ver lista de Actores",
-        "Ver lista de Peliculas", "Ver lista de Directores", "Ordenar Peliculas", "Salir" });
-
-    private static Menu ordenarPeliculas = new Menu("Ordenar Peliculas", new String[] { "Per títol (Comparable)",
-        "Per duració (Comparator)", "Per any + títol (Comparator múltiple)", "Salir" });
-
-    private static Menu menuEliminarEntidad = new Menu("Eliminar Entidad",
-        new String[] { "Eliminar Actores", "Eliminar Peliculas", "Eliminar Directores", "Volver" });
 
 
     public static void main(String[] args) {
@@ -83,17 +67,25 @@ public class ProgramaPrincipal {
                                                 usuario.verListaGlobal(opcionAdmin);
                                             }
                                             case 4-> {
+                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Añadir Peliculas");
+                                                usuario.añadirEntidadGlobal(1);
                                             }
                                             case 5 -> {
-                                                 System.out.println("Añadir Actores");
+                                                System.out.println("Vamos a añadir Directores");
+                                                usuario.añadirEntidadGlobal(3);
+                                                
                                             }
                                             case 6 -> {
+                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
                                                 System.out.println("Añadir Peliculas");
+                                                usuario.añadirEntidadGlobal(2);
                                             }
                                             case 7-> {
                                                 usuario.eliminarUsuario();
+                                                System.out.println("Eliminar Usuarios");
                                             }
+                                            // Caso para eliminar Actor, Director o Película
                                             case 8 -> {
                                                 int opcionEliminar;
                                                 do {
@@ -112,7 +104,6 @@ public class ProgramaPrincipal {
                                             case 9 -> {
                                                 System.out.println("Cerrando sesión del administrador...\n");
                                                 correctoInicioSesion = false;
-                                                correctoInicioSesion = false;
                                             }
                                             default -> System.out.println("Opción incorrecta.");
                                         }
@@ -122,14 +113,12 @@ public class ProgramaPrincipal {
                                         opcionAdmin = -1;
                                     }
                                 } while (opcionAdmin != 9);
-                                } while (opcionAdmin != 9);
                             } else {
                                 int opcionUsuario;
                                 do {
                                     menuUsuario.mostrarMenu();
                                     try {
                                         opcionUsuario = sc.nextInt();
-                                        sc.nextLine();
                                         sc.nextLine();
 
                                         switch (opcionUsuario) {
@@ -139,17 +128,14 @@ public class ProgramaPrincipal {
                                             case 5 -> {
                                                 System.out.println("Cerrando sesión...\n");
                                                 correctoInicioSesion = false;
-                                                correctoInicioSesion = false;
                                             }
                                             default -> System.out.println("Opción incorrecta.");
                                         }
                                     } catch (InputMismatchException e) {
                                         System.out.println("Entrada no válida.");
                                         sc.nextLine();
-                                        sc.nextLine();
                                         opcionUsuario = -1;
                                     }
-                                } while (opcionUsuario != 5 && correctoInicioSesion);
                                 } while (opcionUsuario != 5 && correctoInicioSesion);
                             }
 
@@ -169,6 +155,4 @@ public class ProgramaPrincipal {
 
         sc.close();
     }
-    }
 }
-
