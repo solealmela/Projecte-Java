@@ -383,6 +383,27 @@ public class Usuario extends Persona {
             }
         }
         carpeta.delete();
+    }  
+
+    public void verListaGlobal(int tipoEntidad) {
+        String archivo = switch (tipoEntidad) {
+            case 1 -> "src/com/projecte/datos/actor.dades";
+            case 2 -> "src/com/projecte/datos/peliculas.dades";
+            case 3 -> "src/com/projecte/datos/director.dades";
+            default -> 
+                "";
+            
+        };
+    
+        try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
+            String linea;
+            System.out.println("Contenido del archivo:");
+            while ((linea = br.readLine()) != null) {
+                System.out.println(linea);
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo: " + e.getMessage());
+        }
     }
 
     @Override
