@@ -1,7 +1,6 @@
-package com.projecte.main;
-import java.util.Comparator;
-
-import java.util.InputMismatchException;
+package com.projecte.main; //Indica donde estás
+import java.util.Comparator; //Importo la clase comparator para comparar los distintos elementos
+import java.util.InputMismatchException; //Importo el "Aviso de error" para que si se hace un catch con esa condicion la recoja
 import java.util.Scanner;
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
