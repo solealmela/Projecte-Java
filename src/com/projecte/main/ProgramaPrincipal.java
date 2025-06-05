@@ -7,7 +7,7 @@ import com.projecte.entidad.Usuario;
 
 public class ProgramaPrincipal {
 
-    private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Ver lista de Actores", "Ver lista de Peliculas", "Ver lista de Directores", "Eliminar Usuarios", "Añadir Directores","Añadir Actores","Añadir Peliculas", "Salir"});
+    private static Menu menuAdministrador = new Menu("Menu Administrador", new String[] {"Ver lista de Actores", "Ver lista de Peliculas", "Ver lista de Directores",  "Añadir Directores","Añadir Actores","Añadir Peliculas", "Eliminar Usuarios", "Salir"});
     private static Menu menuInicio = new Menu("Menu de inicio", new String[] {"Registro","Inicio de sesión","Salir"});
     private static   Menu menuUsuario = new Menu("Menu Usuarios", new String[] {"Ver lista de Actores","Ver lista de Peliculas","Ver lista de Directores","Salir"});
 
@@ -59,16 +59,16 @@ public class ProgramaPrincipal {
                                                 usuario.listar(opcionAdmin);
                                             }
                                             case 4-> {
-                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Eliminar Usuarios");
+                                               // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                System.out.println("Metodo para añadir directores, qué campos necesitas?");
                                             }
                                             case 5 -> {
-                                                // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Metodo para añadir directores, qué campos necesitas?");
+                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
+                                                System.out.println("Metodo para añadir actores");
                                             }
                                             case 6 -> {
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana
-                                                System.out.println("Metodo para añadir actores");
+                                                System.out.println("Añadir Peliculas");
                                             }
                                             case 7-> {
                                                 // Aquí invoca métodos según opción pero los hacen ustedes si pueden por la mañana

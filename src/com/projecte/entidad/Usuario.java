@@ -123,7 +123,7 @@ public class Usuario extends Persona {
                             int anyo = Integer.parseInt(partes[3].trim());
 
                             Pelicula p = new Pelicula(nombrePelicula, duracion, anyo, new java.util.ArrayList<>(), 
-                                                      null);
+                            null);
 
                             listaPeliculas.add(p);
                         } else {
@@ -282,7 +282,7 @@ public class Usuario extends Persona {
 
             } while (!opcion.equalsIgnoreCase("n"));
         }
-        
+
         public String buscarLineaPorId(String archivo, String idBuscado) {
             try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
                 String linea;
