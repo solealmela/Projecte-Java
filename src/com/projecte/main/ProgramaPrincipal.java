@@ -1,7 +1,6 @@
 package com.projecte.main;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 import com.projecte.menus.*;
 import com.projecte.acceso.*;
 import com.projecte.entidad.Usuario;
@@ -67,8 +66,6 @@ public class ProgramaPrincipal {
         } while (opcion != 3 && !correctoInicioSesion);
 
         sc.close();
-
-
 
     } //fin main
 }

@@ -246,7 +246,7 @@ public class Usuario extends Gestionable {
             }
         }
 
-        String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId() - 1) + usuario.getNombre() + "/";
+        String rutaCarpetaUsuario = "src/com/projecte/usuarios/" + (usuario.getId()) + usuario.getNombre()+"/"; //ruta carpeta + la carpeta usuario 
         File carpetaUsuario = new File(rutaCarpetaUsuario);
 
         if (!carpetaUsuario.exists() || !carpetaUsuario.isDirectory()) {
